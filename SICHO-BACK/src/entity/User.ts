@@ -1,4 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Subject } from "./Subject";
 
 @Entity()
 export class User {
@@ -13,6 +14,20 @@ export class User {
     lastName: string;
 
     @Column()
-    age: number;
+    honorific: string;
 
+    @Column()
+    department: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    telephone: string;
+
+    @Column()
+    extension: string;
+
+    @Column()
+    schedule: Subject[];
 }
