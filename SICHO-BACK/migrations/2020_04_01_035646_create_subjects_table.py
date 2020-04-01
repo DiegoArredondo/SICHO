@@ -7,10 +7,16 @@ class CreateSubjectsTable(Migration):
         """
         Run the migrations.
         """
-        pass
+        with self.schema.create('subjects') as table:
+            table.string('id')
+            table.string('name')
+            table.string('start')
+            table.integer('durationMinutes')
+            table.string('days')\
+            table.timestamps()
 
     def down(self):
         """
         Revert the migrations.
         """
-        pass
+        self.schema.drop('subjects')

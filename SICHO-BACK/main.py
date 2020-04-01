@@ -126,6 +126,36 @@ days
 
  """
 
+@app.route('/addSubject', methods=[POST])
+def addSubject():
+    try:
+        content = request.get_json(force=True)
+        print("Received request for: addSubject")
+        print(content)
+        Id=content['id']
+        subjectName=content['subjectName']
+        subjectId=content['subjectId']
+        start=content['start']
+        durationMinutes=content['durationMinutes']
+        days=content['days']
+
+        materiaNueva=tablaMaterias()
+        materiaNueva.subjectId = subjectId
+        materiaNueva.subjectName = subjectId
+        materiaNueva.start = start
+        materiaNueva.durationMinutes = durationMinutes
+        materiaNueva.days = days
+
+        materiaNueva.save()
+
+        return jsonify({"success":"Agregado con éxito"})
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
+@app.route('/getAllSubjects')
+def dataSubjects:
+    return jsonify(tablaMaterias.get().serialize())
+
 
 if __name__ == '__main__':
     app.run(debug=True)
