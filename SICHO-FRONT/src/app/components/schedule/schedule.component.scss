@@ -89,6 +89,63 @@
             #nombreDocente{
                 font-size: 15.6px;
             }
+
+            .horario{
+
+                table{
+                    empty-cells: hide;
+                    margin-top: 3vh;
+                    border-collapse: separate;
+                    border-spacing: 6px 6px;
+                }
+                
+                tr{
+                    height: 2vh;
+                }
+
+                th{
+                    background-color: #1B6EB9;
+                    color: white;
+                    border: 1px solid black;
+                    width: 12vw;
+                }
+
+                td{
+                    text-align: center;
+                    border: 1px solid black;
+                    width: 12vw;
+                }
+
+                .asesoria{
+                    background-color: #471AC7;
+                    color: white;
+                }
+
+                .clase{
+                    background-color: #F5E552;
+                }
+
+                .preparacion{
+                    background-color: #BC54CF;
+                    color: white;
+                }
+
+                .gestion{
+                    background-color: #267A0D;
+                    color: white;
+                }
+
+                .investigacion{
+                    background-color: #267A0D;
+                    color: white;
+                }
+
+                .departamento{
+                    background-color: #000000;
+                    color: white;
+                }
+
+            }
         
         }
     
