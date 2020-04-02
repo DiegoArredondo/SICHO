@@ -2,7 +2,7 @@ import os
 db_config_local = {
     'development': {
         'driver': 'mysql',
-        'database': 'sicho-itson',
+        'database': 'sichoitson',
         'host':'127.0.0.1',
         'user': 'root',
         'password': 'admin',
@@ -13,11 +13,11 @@ db_config_local = {
 db_config_production = {
     'development': {
         'driver': 'mysql',
-        'database': 'sicho-itson',
+        'database': 'sichoitson',
         'user': 'root',
         'password': 'admin',
         'prefix': '',
-        'unix_socket': '/cloudsql/sicho-272801:us-west2:sicho-itson',
+        'unix_socket': '/cloudsql/sicho-272801:us-west2:sichoitson',
         'charset':'utf8'
     }
 }

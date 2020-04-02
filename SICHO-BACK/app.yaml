@@ -8,4 +8,4 @@ env_variables:
 
 instance_class: F1
 
-# ./cloud_sql_proxy -instances=theafrisback:us-central1:theafris=tcp:3306
+# ./cloud_sql_proxy -instances=sicho-272801:us-west2:sicho-itson=tcp:3306

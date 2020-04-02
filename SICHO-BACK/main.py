@@ -16,6 +16,7 @@ CORS(app=app,supports_credentials=True)
 
 """ IMPORT MODELS """
 from app.models import Users as tablaUsers
+from app.models import Subjects as tablaSubjects
 
 """ PARA MONTAR SITIO WEB 
 
@@ -49,33 +50,13 @@ def ruta(path):
 def hola():
     return "hola"
 
-
-@app.route('/ruta', methods=['POST']) #GET requests will be blocked
-def nombreDelMetodo(request):
-    data = request.get_json(force = True)
-    return data
-
-""" AGREGAR UN USUARIO
-EJEMPLO DE REQUEST:
-{ 
-    "id" : id
-    "firstName" : firstName
-    "lastName" : lastName
-    "honorific" : honorific
-    "department" : department
-    "email" : email
-    "telephone" : telephone
-    "extension" : extension
-    "schedule" : schedule
-    "password" : password
-    "passwordConfirm" : passwordConfirm
-}"""
 @app.route('/register',methods=['POST'])
 def register():
     try:
         content = request.get_json(force=True)
         print("Received request for: register")
         print(content)
+
         userid=content['id']
         firstName=content['firstName']
         lastName=content['lastName']
@@ -84,77 +65,87 @@ def register():
         email=content['email']
         telephone=content['telephone']
         extension=content['extension']
-        schedule=content['schedule']
-        password1=content['password']
+        password=content['password']
         password2=content['passwordConfirmation']
 
-        if (password1 != password2):
-            raise ValueError('Las contraseñas introducidas no coinciden')
+        if(password != password2):
+            raise ValueError("Las contraseñas proporcionadas no coinciden")
 
-        usuarioNuevo= tablaUsuarios()
-        usuarioNuevo.id = userid
-        usuarioNuevo.firstName = firstName
-        usuarioNuevo.lastName = lastName
-        usuarioNuevo.honorific = honorific
-        usuarioNuevo.department = department
-        usuarioNuevo.email = email
-        usuarioNuevo.telephone = telephone
-        usuarioNuevo.extension = extension
-        usuarioNuevo.schedule = schedule
-        usuarioNuevo.password = password1
+        nuevoUser= tablaUsers()
+        nuevoUser.id = userid
+        nuevoUser.firstName = firstName
+        nuevoUser.lastName = lastName
+        nuevoUser.honorific = honorific
+        nuevoUser.department = department
+        nuevoUser.email = email
+        nuevoUser.telephone = telephone
+        nuevoUser.extension = extension
+        nuevoUser.password = password
+        """ AQUI HAY QUE IR AL SISTEMA Y VER QUE CLASES LE FALTAN DE PROGRAMAR """
+        nuevoUser.scheduleToProgram = "1,2,3,4,5"
+        nuevoUser.save()
 
-        usuarioNuevo.save()
+        return jsonify({"success":"Usuario gregado con éxito"})
+    except Exception as e:
+        return jsonify({"error":str(e)})
 
-        return jsonify({"success":"Agregado con éxito"})
+@app.route('/addSubjects',methods=['POST'])
+def addSubjects():
+    try:
+        content = request.get_json(True)
+        print("Received request for: addsubject")
+        print(content)
+
+        userid=content['userid']
+        subjects = content['subjects']
+
+        if(len(subjects) == 0):
+            raise ValueError("Debe de proporcionar por lo menos una materia")
+
+        user = tablaUsers.where('id',  userid).first()
+
+        succesCases = []
+
+        for subject in subjects:
+            newSubject = tablaSubjects()
+            newSubject.subjectName = subject['subjectName']
+            newSubject.classId = subject['classId']
+            newSubject.start = subject['start']
+            newSubject.durationMinutes = subject['durationMinutes']
+            newSubject.days = subject['days']
+            newSubject.classroom = subject['classroom']
+            newSubject.semester = subject['semester']
+            newSubject.user = userid
+
+            newSubject.save()
+
+            user.scheduleToProgram = user.scheduleToProgram.replace("," + str(newSubject.classId), "")
+            tablaUsers.where('id',  userid).update({'scheduleToProgram' : user.scheduleToProgram})
+
+            succesCases.append("Agregada la materia '" + newSubject.subjectName + "' al usuario '" + user.firstName + "'. Clases faltantes: " )
+
+        return jsonify({"success": succesCases})
     except Exception as e:
         return jsonify({"error":str(e)})
 
 @app.route('/getAllUsers')
 def dataUsers():
-    return jsonify(tablaUsuarios.get().serialize())
+    return jsonify(tablaUsers.get().serialize())
 
-
-""" AQUI VA LO DE LAS MATERIAS (Subject)
-
-LOS PARAMETROS SON
-id
-subjectName
-subjectId
-start
-durationMinutes
-days
-
- """
-
-@app.route('/addSubject', methods=[POST])
-def addSubject():
+    
+@app.route('/getAllsubjects')
+def dataSubjects():
+    return jsonify(tablaSubjects.get().serialize())
+@app.route('/getAllSubjectsByUserId',methods=['POST'])
+def dataSubjectsById():
     try:
-        content = request.get_json(force=True)
-        print("Received request for: addSubject")
-        print(content)
-        Id=content['id']
-        subjectName=content['subjectName']
-        subjectId=content['subjectId']
-        start=content['start']
-        durationMinutes=content['durationMinutes']
-        days=content['days']
-
-        materiaNueva=tablaMaterias()
-        materiaNueva.subjectId = subjectId
-        materiaNueva.subjectName = subjectId
-        materiaNueva.start = start
-        materiaNueva.durationMinutes = durationMinutes
-        materiaNueva.days = days
-
-        materiaNueva.save()
-
-        return jsonify({"success":"Agregado con éxito"})
+        content = request.get_json(True)
+        userid=content['userid']
+        return jsonify(tablaSubjects.where('user',userid).get().serialize())
     except Exception as e:
         return jsonify({"error":str(e)})
 
-@app.route('/getAllSubjects')
-def dataSubjects:
-    return jsonify(tablaMaterias.get().serialize())
+
 
 
 if __name__ == '__main__':
