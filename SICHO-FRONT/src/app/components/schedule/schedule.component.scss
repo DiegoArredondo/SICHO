@@ -19,33 +19,78 @@
     box-shadow: -1px 2px 45px -6px rgba(0,0,0,0.83);
     font-family: 'Segoe UI';
     overflow: hidden;
-}
 
-.lateral{
-    background-color: #186db7;
-    width: 20vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-
-    img{
-        width: 10vh;
+    .lateral{
+        background-color: #186db7;
+        width: 16vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 4vh;
+        padding-left: 4vh;
+    
+        img{
+            width: 15vh;
+            margin-top: 5vh;
+        }
+    
+        h1{
+            color: white;
+            font-size: 10vh;
+            line-height: 78px;
+        }
     }
 
-    h1{
-        color: white;
+    .content{
+        padding-top: 5vh;
+        padding-left: 55px;
+        padding-right: 55px;
+    
+        .header{
+            display: flex;
+            width: 73vw;
+            height: 30vh;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .infoInstituto{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            .telefono{
+                display: flex;
+            }
+        
+            img{
+                height: 11vh;
+            }
+
+            h4{
+                margin: 0;
+                border-bottom: 2px solid #C9B94D;
+                font-size: 22px;
+            }
+
+            p{
+                line-height: 19px;
+                margin: 0px;
+                font-size: 13px;
+            }
+
+            #departamento{
+                margin-bottom: 1vh;
+                font-size: 15.6px;
+            }
+
+            #nombreDocente{
+                font-size: 15.6px;
+            }
+        
+        }
+    
     }
-}
-
-.header{
-    display: flex;
-    width: 100vw;
-    height: 30vh;
-    flex-wrap: wrap;
-
-    img{
-        width: 30vh;
-    }
-
 }
