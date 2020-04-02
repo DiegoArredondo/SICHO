@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "SICHO-FRONT": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SICHO-FRONT"
+    }
+  },
+  "defaultProject": "SICHO-FRONT",
+  "cli": {
+    "analytics": "3d6e3d38-05d7-48e6-a872-4120cb89a281"
+  }
 }
