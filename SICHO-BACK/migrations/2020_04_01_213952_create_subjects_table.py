@@ -8,11 +8,15 @@ class CreateSubjectsTable(Migration):
         Run the migrations.
         """
         with self.schema.create('subjects') as table:
-            table.string('id')
-            table.string('name')
+            table.increments('id')
+            table.string('subjectName')
+            table.string('classId')
             table.string('start')
             table.integer('durationMinutes')
-            table.string('days')\
+            table.string('days')
+            table.string('classroom')
+            table.string('semester')
+            table.string('user')
             table.timestamps()
 
     def down(self):

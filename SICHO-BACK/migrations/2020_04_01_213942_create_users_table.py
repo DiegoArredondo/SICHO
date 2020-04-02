@@ -16,7 +16,7 @@ class CreateUsersTable(Migration):
             table.string('email')
             table.string('telephone')
             table.string('extension')
-            table.string('schedule')
+            table.string('scheduleToProgram')
             table.string('password')
             table.timestamps()
 
