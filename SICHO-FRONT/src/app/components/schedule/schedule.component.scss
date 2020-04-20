@@ -92,6 +92,8 @@
 
             .horario{
 
+                overflow: auto;
+
                 table{
                     empty-cells: hide;
                     margin-top: 3vh;
