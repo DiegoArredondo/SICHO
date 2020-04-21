@@ -1,11 +1,15 @@
 <div class="main">
 
     <div class="mainContainer">
-        <img src="../../assets/img/itson.png" alt="Logo ITSON">
+        <img src="assets/img/ITSON_azul.png" alt="Logo ITSON">
         <h2>SISTEMA DE CREACIÓN DE HORARIO</h2>
-        <input type="text" placeholder="Ingrese ID ITSON de 11 digitos" />
-        <input type="text" placeholder="Ingrese contraseña" />
-        <button>CONEXIÓN</button><br>
+
+
+        <div class="msgError" *ngIf="errorMsg"> {{errorMsg}} </div>
+        <input type="text" placeholder="Ingrese ID ITSON de 11 digitos" [(ngModel)]="id" (ngModelChange)="verifyInput($event)"/>
+        <input type="password" placeholder="Ingrese contraseña" [(ngModel)]="password" />
+        <button (click)="submit()">CONEXIÓN</button>
+
         <div class="recuperar">
             <strong>¿Has olvidado tu </strong>
             <a id="recuperarDatos"
@@ -14,6 +18,8 @@
         </div>
         <a id="avisoPrivacidad" href="https://www.itson.mx/micrositios/transparencia/Paginas/avisos-de-privacidad.aspx"
             target="_blank">AVISO DE PRIVACIDAD</a>
+
+        
     </div>
 
 </div>

@@ -24,10 +24,9 @@
 .recuperar{
     display: flex;
     flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto 0 auto;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 #avisoPrivacidad{
@@ -35,64 +34,71 @@
     margin-right: auto;
     margin-top: 10px;
     font-weight: bold;
-    color: #5893d6;
-    font-size: 20px;
+    color: #337ab7;
+    font-size: 1rem;
     text-decoration: none;
 }
 
 img {
-    width: 523px;
-    height: 190px;
+    max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
 }
 
 h2 {
-    color: #28B7F2;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 41px;
-    margin-top: 75px;
-    margin-bottom: 75px;
+    color: #046DB5;
+    margin: 5vh auto;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 input{
-    width: 649px;
-    height: 48px;
-    border-radius: 50px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 24px;
-    font-size: 24px;
-    color: #959497;
+    font-size: 13px;
+    line-height: 1.5;
+    display: block;
+    width: 75%;
+    margin: 0 auto 15px auto;
+    background: white;
+    height: 45px;
+    border-radius: 25px;
+    border: none;
+    padding-left: 25px;
+    padding-right: 30x;
 }
 
 button{
-    width: 166px;
-    height: 52px;
-    background-color: #186db7;
-    color: #FFF;
-    border-radius: 12px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    font-size: 20px;
+    padding: 0 30px;
+    line-height: 1.5;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 30px;
+    border-radius: 25px;
+    background: #09F;
+    border: none;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 #recuperarDatos{
     margin-left: 6px;
-    color: #5893d6;
+    color: #0179ca;
     text-decoration: none;
 }
 
 #recuperarDatos:hover{
-    color: #0476f6;
+    color: #23527c;
     text-decoration: underline;
 }
 
 #avisoPrivacidad:hover{
-    color: #0476f6;
+    color: #23527c;
     text-decoration: underline;
+}
+
+div.msgError{
+    width: 80%;
+    margin: 0 auto 20px auto;
+    text-align: center;
 }
