@@ -1,0 +1,130 @@
+.main {
+    background-color: #186db7;
+    width: 100%;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainContainer {
+    background-color: #bfddf8;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: -1px 2px 45px -6px rgba(0, 0, 0, 0.83);
+    font-family: "Segoe UI";
+    overflow: hidden;
+
+    .lateral {
+        background-color: #186db7;
+        width: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 4vh;
+        padding-left: 4vh;
+
+        img {
+            width: 15vh;
+            margin-top: 5vh;
+        }
+
+        h1 {
+            color: white;
+            font-size: 10vh;
+            line-height: 78px;
+        }
+    }
+
+    .content {
+        padding-top: 5vh;
+        padding-left: 55px;
+        padding-right: 55px;
+        width: 90%;
+
+        h2 {
+            height: 10%;
+            margin: 0;
+            font-size: 2.3rem;
+            display: flex;
+            align-items: center;
+            padding-bottom: 5%;
+        }
+
+        div.leftside {
+            width: 64%;
+            height: 70%;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+
+            div.row{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                font-size: 1.2rem;
+                margin-bottom: .3rem;
+                div.value{
+                    width: 25%;
+                    display: inline-block;
+                    text-align: right;
+                    font-weight: bolder;
+                    font-size: 1.3em;
+                }
+                div.label{
+                    width: 70%;
+                    display: inline-block;
+                    color: #0179ca;
+                    font-weight: bold;
+                }
+            }
+
+            div.group1{
+                margin-bottom: 10vh;
+            }
+
+            div.group1,div.group2{
+                width: 100%;
+            }
+
+        }
+        div.rightside {
+            width: 35%;
+            display: inline-flex;
+            border-left: 1px solid #afafaf;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70%;
+
+            h4 {
+                text-align: center;
+                color: #000;
+                font-size: 1.2rem;
+                span {
+                    font-size: 1rem;
+                    display: block;
+                    color: #0179ca;
+                }
+            }
+
+            button {
+                border: 2px solid #186db7;
+                border-radius: 20px;
+                padding: 10px 0;
+                color: #186db7;
+                font-weight: bold;
+                margin: 10px 0;
+                width: 60%;
+                font-size: .9rem;
+            }
+        }
+    }
+}
