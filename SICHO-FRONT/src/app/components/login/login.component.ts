@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   id;
   password;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -42,7 +44,18 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // Obtener el usuario en la BD de ITSON
-    this.router.navigate(["home"])
+    this.apiService.post(ApiService.login, {"id":this.id, "password": this.password}).subscribe(data=>{
+      if(data.status == "logged"){
+        environment.user = data.user
+        this.router.navigate(["home"])
+      } else {
+        this.errorMsg = data.msg
+      }
+    }, error=>{
+      alert(error)
+    })
+  
+
+    
   }
 }

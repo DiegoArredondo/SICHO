@@ -17,6 +17,7 @@ CORS(app=app,supports_credentials=True)
 """ IMPORT MODELS """
 from app.models import Users as tablaUsers
 from app.models import Subjects as tablaSubjects
+from app.models import Departments as tablaDepartments
 
 """ PARA MONTAR SITIO WEB 
 
@@ -50,11 +51,34 @@ def ruta(path):
 def hola():
     return "hola"
 
+@app.route('/registerDepartment',methods=['POST'])
+def registerDepartment():
+    try:
+        content = request.get_json(force=True)
+        print("\n\n\nReceived request for: register department")
+        print(content)
+
+        depid=content['id']
+        depname=content['name']
+
+        dep = tablaDepartments.where("id", depid).first()
+
+        if(dep is None):
+            nuevoDep = tablaDepartments()
+            nuevoDep.id = depid
+            nuevoDep.name = depname
+            nuevoDep.save()
+            return jsonify({"success":"Departamento agregado con éxito"})
+        else:
+            return jsonify({"error": "Ya existe un departamento con ese Id"})
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
 @app.route('/register',methods=['POST'])
 def register():
     try:
         content = request.get_json(force=True)
-        print("Received request for: register")
+        print("\n\n\nReceived request for: register")
         print(content)
 
         userid=content['id']
@@ -89,11 +113,39 @@ def register():
     except Exception as e:
         return jsonify({"error":str(e)})
 
+""" INICIAR SESION
+    EJEMPLO DE REQUEST:
+    {
+        "id": "00000180890",
+        "password": "pass"
+    }
+ """
+@app.route('/login',methods=['POST'])
+def login():
+    try:
+        content = request.get_json(force=True)
+        print("\n\n\nReceived request for: login")
+        print(content)
+        userid=content['id']
+        password=content['password']
+
+        usuario = tablaUsers.where("id", userid).first()
+
+        if(usuario is None ):
+            return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
+
+        if(usuario.password != password):
+            return jsonify({"status":"error", "msg": "El usuario y contraseña introducidos no son correctos"})
+
+        return jsonify({"status":"logged", "user" : usuario.serialize()})
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
 @app.route('/addSubjects',methods=['POST'])
 def addSubjects():
     try:
         content = request.get_json(True)
-        print("Received request for: addsubject")
+        print("\n\n\nReceived request for: addsubject")
         print(content)
 
         userid=content['userid']
@@ -133,7 +185,10 @@ def dataUsers():
     return jsonify(tablaUsers.get().serialize())
 
     
-@app.route('/getAllsubjects')
+@app.route('/getAllDepartments')
+def dataDepartments():
+    return jsonify(tablaDepartments.get().serialize())
+@app.route('/getAllSubjects')
 def dataSubjects():
     return jsonify(tablaSubjects.get().serialize())
 @app.route('/getAllSubjectsByUserId',methods=['POST'])
