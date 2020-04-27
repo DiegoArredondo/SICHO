@@ -10,20 +10,20 @@ import { HomeComponent } from './components/home/home.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 
 import {ProfesorService} from './components/schedule/schedule.service';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ScheduleComponent
+    ScheduleComponent,
+
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule
   ],
   providers: [ProfesorService],
   bootstrap: [AppComponent]

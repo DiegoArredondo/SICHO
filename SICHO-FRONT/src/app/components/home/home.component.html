@@ -1,77 +1,79 @@
 <div class="main">
-
-    <div class="mainContainer">
-
-        <div class="lateral">
-
-            <img src="../../../assets/img/PI_negativo.png" alt="ITSON logo circular ">
-            <h1>Es <br> ta <br> do.</h1>
-
-        </div>
-
-        <div class="content">
-
-            <h2>Estado de la programación de horario</h2>
-            
-            <div class="leftside">
-
-                <div class="group1">
-                    <div class="row">
-                        <div class="value">
-                            {{clasesProgramadas}} de {{clasesPorProgramar}}
-                        </div>
-                        <div class="label">
-                            Clases Programadas
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="value">
-                            {{horasInvestigacionSemanales}}
-                        </div>
-                        <div class="label">
-                            Horas de Investigacion Semanales
-                        </div>
-                    </div>
-    
-                    <div class="row">
-                        <div class="value">
-                            {{horasExtra}}
-                        </div>
-                        <div class="label">
-                            Horas extra
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group2">
-                    <div class="row">
-                        <div class="value">
-                            {{horasFaltantes}}
-                        </div>
-                        <div class="label">
-                            Horas faltantes para las 40 horas
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="rightside">
-                <h4>
-                    <span>Tipo de contratación</span>
-                    {{ tipoContratacion }}
-                </h4>
-                <h4>
-                    <span>Nivel de investigación</span>
-                    {{ nivelInvestigacion }}
-                </h4>
-
-                <button>Programar materias</button>
-                <button>Programar hora de comida</button>
-            </div>
-
-        </div>
-
+  <div class="mainContainer">
+    <div class="lateral">
+      <img src="../../../assets/img/PI_negativo.png" alt="ITSON logo circular " />
+      <h1>
+        Es <br />
+        ta <br />
+        do.
+      </h1>
     </div>
 
+    <div class="content">
+      <h2>Estado de la programación de horario</h2>
+
+      <div class="leftside">
+        <div class="group1">
+          <div class="row">
+            <div class="value">
+              {{ clasesProgramadas }} de {{ clasesPorProgramar }}
+            </div>
+            <div class="label">
+              Clases Programadas
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="value">
+              {{ horasInvestigacionSemanales }}
+            </div>
+            <div class="label">
+              Horas de Investigacion Semanales
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="value">
+              {{ horasExtra }}
+            </div>
+            <div class="label">
+              Horas extra
+            </div>
+          </div>
+        </div>
+
+        <div class="group2">
+          <div class="row">
+            <div class="value">
+              {{ horasFaltantes }}
+            </div>
+            <div class="label">
+              Horas faltantes para las 40 horas
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rightside">
+        <h4>
+          <span>Tipo de Contratación</span>
+          <select id="value" name="text" [(ngModel)]="tipoContratacion" class="fore-control">
+            <option *ngFor="let tipoc of tipoContratacion"[value]="tipoc.value">
+            {{tipoc.text}}
+          </option>
+          </select>
+        </h4>
+        <h4>
+          <span>Tipo de Distribucion</span>
+          <select id="value" name="text" [(ngModel)]="tipoDistribucion" class="fore-control">
+            <option *ngFor="let tipod of tipoDistribucion"[value]="tipod.value">
+            {{tipod.text}}
+          </option>
+          </select>
+        </h4>
+
+        <button>Programar Actividades</button>
+        <button>Programar hora de comida</button>
+      </div>
+    </div>
+  </div>
 </div>
