@@ -10,7 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 
 import {ProfesorService} from './components/schedule/schedule.service';
-
+import { ScheduleModule, RecurrenceEditorModule, WeekService, WorkWeekService, DayService } from '@syncfusion/ej2-angular-schedule';
+/*
+import { FormsModule } from '@angular/forms';
+*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +26,10 @@ import {ProfesorService} from './components/schedule/schedule.service';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ScheduleModule, RecurrenceEditorModule 
   ],
-  providers: [ProfesorService],
+  providers: [ProfesorService, WeekService, WorkWeekService, DayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

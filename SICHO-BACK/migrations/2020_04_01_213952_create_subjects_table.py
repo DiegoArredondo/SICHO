@@ -12,6 +12,7 @@ class CreateSubjectsTable(Migration):
             table.string('subjectName')
             table.string('classId')
             table.string('start')
+            table.string('ends')
             table.integer('durationMinutes')
             table.string('days')
             table.string('classroom')
