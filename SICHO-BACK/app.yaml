@@ -8,4 +8,15 @@ env_variables:
 
 instance_class: F1
 
-# ./cloud_sql_proxy -instances=sicho-272801:us-west2:sichoitson=tcp:3306
+# ./cloud_sql_proxy_x64.exe -instances=sicho-272801:us-west2:sichoitson=tcp:3306
+# estar conectado con el proxy
+#para crear una tabla hay que crear una mgracion
+#     1. venv/scripts/activate
+#     2. python db.py make:migration create_nomTabla_table
+#     3. modificar el archivo que se creó en la carpeta migrations
+#     4. python db.py migrate
+#        --------------------:rollback deshacer la ultima migracion
+#        --------------------:reset drop table de todas las tablas
+
+
+# flaskorator, orator. 
