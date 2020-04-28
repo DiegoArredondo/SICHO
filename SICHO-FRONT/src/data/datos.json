@@ -1,0 +1,12 @@
+{
+    "profesor":{
+        "firstName":"Gilberto",
+        "lastName":"Borrego Soto",
+        "honorific":"Dr.",
+        "department":"Computación y diseño",
+        "email":"gilberto.borrego@itson.edu.mx",
+        "telephone":"410 90 00",
+        "extension":"1518",
+        "scheduleToProgram":""
+    }
+}

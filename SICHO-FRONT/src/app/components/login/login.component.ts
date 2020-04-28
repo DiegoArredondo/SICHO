@@ -17,7 +17,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private apiService: ApiService) { }
 
+   profesor:any = [];
+
   ngOnInit(): void {
+    
   }
 
 

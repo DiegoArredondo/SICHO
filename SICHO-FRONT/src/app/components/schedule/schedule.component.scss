@@ -45,14 +45,14 @@
 
     .content{
         padding-top: 5vh;
-        padding-left: 55px;
-        padding-right: 55px;
-        width: 90%;
+        padding-left: 5vh;
+        padding-right: 5vh;
+        padding-bottom: 5vh;
     
         .header{
             display: flex;
             width: 73vw;
-            height: 30vh;
+            height: 15vh;
             flex-wrap: wrap;
             justify-content: space-between;
 
@@ -94,7 +94,9 @@
             .horario{
 
                 overflow: auto;
-
+                height: 59vh;
+                width: 73vw;
+    
                 table{
                     empty-cells: hide;
                     margin-top: 3vh;
@@ -105,52 +107,54 @@
                 tr{
                     height: 2vh;
                 }
-
+    
                 th{
                     background-color: #1B6EB9;
                     color: white;
                     border: 1px solid black;
                     width: 12vw;
                 }
-
+    
                 td{
                     text-align: center;
                     border: 1px solid black;
                     width: 12vw;
                 }
-
+    
                 .asesoria{
                     background-color: #471AC7;
                     color: white;
                 }
-
+    
                 .clase{
                     background-color: #F5E552;
                 }
-
+    
                 .preparacion{
                     background-color: #BC54CF;
                     color: white;
                 }
-
+    
                 .gestion{
                     background-color: #267A0D;
                     color: white;
                 }
-
+    
                 .investigacion{
                     background-color: #267A0D;
                     color: white;
                 }
-
+    
                 .departamento{
                     background-color: #000000;
                     color: white;
                 }
-
+    
             }
         
         }
+
+        
     
     }
 }

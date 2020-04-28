@@ -9,12 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 
+import {ProfesorService} from './components/schedule/schedule.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ScheduleComponent
+    ScheduleComponent,
+
   ],
   imports: [
     FormsModule,
@@ -22,7 +25,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ProfesorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
