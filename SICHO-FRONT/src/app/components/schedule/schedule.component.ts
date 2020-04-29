@@ -10,13 +10,36 @@ import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/e
 export class ScheduleComponent implements OnInit {
 
   public profesor:any = [];
+  horasE=true;
+  
 
   constructor(private ProfesorService:ProfesorService) {
 
   }
 
   ngOnInit(): void {
-    this.ProfesorService.getProfesor().subscribe(responseProfesor => this.profesor = responseProfesor)
+    this.ProfesorService.getProfesor().subscribe(responseProfesor => {
+      this.profesor = responseProfesor
+
+      let dataSource = []
+      
+
+      //Recorre las materias a programar y las agrega al arreglo
+      this.profesor.scheduleToProgram.forEach(stp => {
+        dataSource.push({
+          Id: 1,
+          Subject: stp.subjectName,
+          Location: 'USA',
+          StartTime: new Date(2020, 3, 27, 9, 30),
+          EndTime: new Date(2020, 3, 27, 11, 0),
+          isReadOnly:true,
+        })
+      });
+      // Inicializa eventSettings con el arreglo de materias
+      this.eventSettings = {
+        dataSource: dataSource   
+      }; 
+    })
   }
 
   public eventSettings: EventSettingsModel = {
@@ -28,10 +51,46 @@ export class ScheduleComponent implements OnInit {
         StartTime: new Date(2020, 3, 27, 9, 30),
         EndTime: new Date(2020, 3, 27, 11, 0),
         isReadOnly:true,
+      },
+      {
+        Id: 2,
+        Subject: "Tu sabia, lo que habia beibe", /*profesor.scheduleToProgram.subjectName*/
+        Location: 'Ella es una bandolera',
+        StartTime: new Date(2020, 3, 27, 9, 30),
+        EndTime: new Date(2020, 3, 27, 11, 0),
+        isReadOnly:true,
       }
+
     ]   
   };  
+  
+imprimirHorario(){
+   
+   window.print();
+ }
+ alertaHoras(){
+   if(this.horasE=true){
+    alert('Esta programando horas extra')
+   }else{
+     alert('Esta programando horas base')
 
+   }
+   
+ }
+
+   
+
+ /*
+ export class RemoteDataComponent {
+    public selectedDate: Date = new Date(2017, 5, 5);
+    public currentView: View = 'Week';
+    public readonly: boolean = true;
+    private dataManger: DataManager = new DataManager({
+        url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/LoadData',
+        adaptor: new WebApiAdaptor,
+        crossDomain: true
+    });
+ */
   /*
   public setView: View = 'Week'
   public workHours: WorkHoursModel = { start: '8:00', end: '16:00' };

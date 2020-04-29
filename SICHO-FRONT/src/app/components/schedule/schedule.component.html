@@ -26,11 +26,20 @@
                     </div>
                     <p id="cicloEscolar">Enero - Mayo 2020</p>
                 </div>
-            <div class="horario">
+            <div class="horario" *ngIf="eventSettings">
                 <ejs-schedule #scheduleObj [eventSettings]="eventSettings" #scheduleObj endHour='17:00' #scheduleObj startHour='8:00' #scheduleObj currentView='WorkWeek'
                 #scheduleObj [showHeaderBar]=false #scheduleObj [showTimeIndicator]=false>
                     
                 </ejs-schedule>
+
+
+                /*
+                <!--<div class="control-section">
+                  <ejs-schedule width='100%' height='650px' [selectedDate]="selectedDate" [eventSettings]="eventSettings" [currentView]="currentView"
+                      [readonly]="readonly">
+                  </ejs-schedule>
+              </div>
+                -->
                 <!--
                 <table>
                     <tr>
@@ -112,10 +121,31 @@
                 -->
 
             </div>
+            
+            <th><button (click)=imprimirHorario()>Imprimir Horario</button>
+            
+                <button  (click)=alertaHoras()>Verificar Horas</button>
+               
+                <h1 *ngIf="horasE ; else elseBlock">
+                    <p>
+                        Horas Extra: 5**{{profesor.Horas}}
+    
+                    </p>
+                </h1>
+    
+                <ng-template #elseBlock>
+                    <h1>
+                        <p>Horas Programadas: 40**{{profesor.Horas}}
+                        </p>
+                       
+                    </h1>
+                </ng-template> 
+            </th>
+            <div>
+                
 
         </div>
-
-        </div>
+    
 
     </div>
 

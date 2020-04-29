@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -28,10 +30,17 @@ export class HomeComponent implements OnInit {
   ]
   showDropDown: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
   ngOnInit(): void {
+  }
+
+  submitSchedule(){
+   
+
+    // Obtener el usuario en la BD de ITSON
+    this.router.navigate(["schedule"])
   }
 
 }
