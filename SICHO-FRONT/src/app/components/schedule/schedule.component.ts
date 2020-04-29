@@ -10,27 +10,37 @@ import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/e
 export class ScheduleComponent implements OnInit {
 
   public profesor:any = [];
+  public eventSettings: EventSettingsModel;
 
   constructor(private ProfesorService:ProfesorService) {
 
   }
 
   ngOnInit(): void {
-    this.ProfesorService.getProfesor().subscribe(responseProfesor => this.profesor = responseProfesor)
+    this.ProfesorService.getProfesor().subscribe(responseProfesor => {
+      this.profesor = responseProfesor
+
+      let dataSource = []
+
+      //Recorre las materias a programar y las agrega al arreglo
+      this.profesor.scheduleToProgram.forEach(stp => {
+        dataSource.push({
+          Id: 1,
+          Subject: stp.subjectName,
+          Location: 'USA',
+          StartTime: new Date(2020, 3, 27, 9, 30),
+          EndTime: new Date(2020, 3, 27, 11, 0),
+          isReadOnly:true,
+        })
+      });
+      // Inicializa eventSettings con el arreglo de materias
+      this.eventSettings = {
+        dataSource: dataSource   
+      }; 
+    })
   }
 
-  public eventSettings: EventSettingsModel = {
-    dataSource: [
-      {
-        Id: 1,
-        Subject: "Ayuda", /*profesor.scheduleToProgram.subjectName*/
-        Location: 'USA',
-        StartTime: new Date(2020, 3, 27, 9, 30),
-        EndTime: new Date(2020, 3, 27, 11, 0),
-        isReadOnly:true,
-      }
-    ]   
-  };  
+   
 
   /*
   public setView: View = 'Week'

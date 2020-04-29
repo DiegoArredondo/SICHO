@@ -26,7 +26,7 @@
                     </div>
                     <p id="cicloEscolar">Enero - Mayo 2020</p>
                 </div>
-            <div class="horario">
+            <div class="horario" *ngIf="eventSettings">
                 <ejs-schedule #scheduleObj [eventSettings]="eventSettings" #scheduleObj endHour='17:00' #scheduleObj startHour='8:00' #scheduleObj currentView='WorkWeek'
                 #scheduleObj [showHeaderBar]=false #scheduleObj [showTimeIndicator]=false>
                     
