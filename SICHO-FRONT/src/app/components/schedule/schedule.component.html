@@ -27,10 +27,9 @@
                     <p id="cicloEscolar">Enero - Mayo 2020</p>
                 </div>
             <div class="horario">
-                <ejs-schedule [currentView]="setView" [eventSettings]="eventObject" [workHours]="workHours">
-                    <e-view>
-                        <e-view option="Week"></e-view>
-                    </e-view>
+                <ejs-schedule #scheduleObj [eventSettings]="eventSettings" #scheduleObj endHour='17:00' #scheduleObj startHour='8:00' #scheduleObj currentView='WorkWeek'
+                #scheduleObj [showHeaderBar]=false #scheduleObj [showTimeIndicator]=false>
+                    
                 </ejs-schedule>
                 <!--
                 <table>

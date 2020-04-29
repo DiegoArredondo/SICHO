@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {ProfesorService} from './schedule.service';
-import {View, EventSettingsModel, WorkHoursModel} from '@syncfusion/ej2-angular-schedule';
+import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 
 @Component({
   selector: 'app-schedule',
@@ -9,23 +9,37 @@ import {View, EventSettingsModel, WorkHoursModel} from '@syncfusion/ej2-angular-
 })
 export class ScheduleComponent implements OnInit {
 
-  constructor(private ProfesorService: ProfesorService) {
+  public profesor:any = [];
 
-   }
+  constructor(private ProfesorService:ProfesorService) {
 
-   profesor:any = [];
+  }
 
   ngOnInit(): void {
     this.ProfesorService.getProfesor().subscribe(responseProfesor => this.profesor = responseProfesor)
   }
 
+  public eventSettings: EventSettingsModel = {
+    dataSource: [
+      {
+        Id: 1,
+        Subject: "Ayuda", /*profesor.scheduleToProgram.subjectName*/
+        Location: 'USA',
+        StartTime: new Date(2020, 3, 27, 9, 30),
+        EndTime: new Date(2020, 3, 27, 11, 0),
+        isReadOnly:true,
+      }
+    ]   
+  };  
+
+  /*
   public setView: View = 'Week'
   public workHours: WorkHoursModel = { start: '8:00', end: '16:00' };
   public eventObject:EventSettingsModel = {
     dataSource: [{
-      Subject: "Tutrias",
-      StartTime: new Date(2020, 3, 27, 9, 0),
-      EndTime: new Date(2020, 3, 27, 10, 0),
+      EventTitle: "",
+      EventStart: new Date(2020, 3, 27, 9, 0),
+      EventEnd: new Date(2020, 3, 27, 10, 0),
       isReadOnly: true,
     },{
       Subject: "Introducción al internet de las cosas",
@@ -56,6 +70,12 @@ export class ScheduleComponent implements OnInit {
       EndTime: new Date(2020, 3, 28, 16, 30),
       isReadOnly: true,
       RecurrenceRule: "FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=1;"
-    }]
+    }],
+    fields: {
+      subject: {name: 'EventTitle', default: 'Tutorias'},
+      startTime: {name: 'EventStart'},
+      endTime: {name: 'EventEnd'}
+    }
   }
+  */
 }
