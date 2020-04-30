@@ -31,91 +31,32 @@
                 #scheduleObj [showHeaderBar]=false #scheduleObj [showTimeIndicator]=false>
                     
                 </ejs-schedule>
-                <!--
-                <table>
-                    <tr>
-                        <th rowspan="2">Hora.</th>
-                        <th rowspan="2">Lunes</th>
-                        <th rowspan="2">Martes</th>
-                        <th rowspan="2">Miércoles</th>
-                        <th rowspan="2">Jueves</th>
-                        <th rowspan="2">Viernes</th>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <th rowspan="2">8:00 am - 9:00 am</th>
-                        <td rowspan="2" class="asesoria">Asesoria</td>
-                        <td class="asesoria">Asesorias</td>
-                        <td rowspan="2" class="asesoria">Asesoria</td>
-                        <td class="asesoria">Asesorias</td>
-                        <td rowspan="2" class="asesoria">Asesoria</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="3" class="clase">Introducción al internet de las cosas (LV1823)</td>
-                        <td rowspan="3" class="clase">Introducción al internet de las cosas (LV1823)</td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">9:00 am - 10:00 am</th>
-                        <td rowspan="2" class="clase">Tutorías (AV1829)</td>
-                        <td rowspan="4" class="preparacion">Preparación de clases</td>
-                        <td rowspan="4" class="investigacion">Investigación</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">10:00 am - 11:00 am</th>
-                        <td rowspan="6" class="preparacion">Preparación de clase</td>
-                        <td rowspan="3" class="gestion">Gestión Académica</td>
-                        <td rowspan="3" class="gestion">Gestión Académica</td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <th rowspan="2">11:00 am - 12:00 pm</th>
-                        <td rowspan="4" class="departamento">Reunión del departamento</td>
-                        <td rowspan="4" class="departamento">Reunión del departamento</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="3" class="clase">Métodos Ágiles de Desarrollo(AV1829)</td>
-                        <td rowspan="3" class="clase">Métodos Ágiles de Desarrollo(AV1829)</td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">12:00 pm - 1:00 pm</th>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <th rowspan="2">1:00 pm - 2:00 pm</th>
-                        <td rowspan="6" class="clase">Proyecto de campo I (MTIN - AV1827)</td>
-                        <td rowspan="4" class="gestion">Gestión Académica</td>
-                        <td rowspan="3" class="clase">Tópico I (MCI - Cub. 18)</td>
-                        <td rowspan="4" class="gestion">Gestión Académica</td>
-                        <td rowspan="3" class="clase">Tópico I (MCI - Cub. 18)</td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <th rowspan="2">2:00 pm - 3:00 pm</th>
-                    </tr>
-                    <tr>
-                        <td rowspan="3" class="investigacion">Investigación</td>
-                        <td rowspan="3" class="investigacion">Investigación</td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">3:00 pm - 4:00 pm</th>
-                        <td rowspan="3" class="clase">Arquitectura de Software (AV1825)</td>
-                        <td rowspan="3" class="clase">Arquitectura de Software (AV1825)</td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <th rowspan="2">4:00 pm - 5:00 pm</th>
-                    </tr>
-                    <tr></tr>
-                </table>
-                -->
 
             </div>
+            
+            <th><button (click)=imprimirHorario()>Imprimir Horario</button>
+            
+                <button  (click)=alertaHoras()>Verificar Horas</button>
+               
+                <h1 *ngIf="horasE ; else elseBlock">
+                    <p>
+                        Horas Extra: 5**{{profesor.Horas}}
+    
+                    </p>
+                </h1>
+    
+                <ng-template #elseBlock>
+                    <h1>
+                        <p>Horas Programadas: 40**{{profesor.Horas}}
+                        </p>
+                       
+                    </h1>
+                </ng-template> 
+            </th>
+            <div>
 
         </div>
-
-        </div>
+    
 
     </div>
 

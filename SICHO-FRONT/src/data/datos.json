@@ -11,12 +11,51 @@
             {
                 "id":1,
                 "subjectName":"Tutorias",
-                "start": "new Date(2020, 4, 27, 9, 0)",
-                "end": "new Date(2020, 4, 27, 10, 0)",
+                "start": [9,0],
+                "end": [10,0],
                 "durationMinutes": 60,
-                "days": ["lunes", "miercoles", "viernes"],
-                "classroom": "AV 1829",
-                "isEditable": false
+                "days": ["MO"],
+                "classroom": "AV 1829"
+            },{
+                "id":2,
+                "subjectName":"Introducción al internet de las cosas",
+                "start": [8,30],
+                "end": [10,0],
+                "durationMinutes": 90,
+                "days": ["TU","TH"],
+                "classroom": "AV 1823"
+            },{
+                "id":3,
+                "subjectName":"Métodos ágiles de desarrollo",
+                "start": [11,30],
+                "end": [13,0],
+                "durationMinutes": 90,
+                "days": ["TU","TH"],
+                "classroom": "AV 1829"
+            },{
+                "id":4,
+                "subjectName":"Proyecto de campo I",
+                "start": [13,0],
+                "end": [16,0],
+                "durationMinutes": 180,
+                "days": ["MO"],
+                "classroom": "MTIN - AV 1827"
+            },{
+                "id":5,
+                "subjectName":"Tópico I",
+                "start": [13,0],
+                "end": [14,30],
+                "durationMinutes": 90,
+                "days": ["WE","FR"],
+                "classroom": "MCI - Cub. 18"
+            },{
+                "id":6,
+                "subjectName":"Arquitectura de Software",
+                "start": [15,0],
+                "end": [16,30],
+                "durationMinutes": 90,
+                "days": ["TU","TH"],
+                "classroom": "AV1825"
             }
         ]
     }
