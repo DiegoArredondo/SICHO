@@ -56,23 +56,32 @@
       <div class="rightside">
         <h4>
           <span>Tipo de Contratación</span>
-          <select id="value" name="text" [(ngModel)]="tipoContratacion" class="fore-control">
-            <option *ngFor="let tipoc of tipoContratacion"[value]="tipoc.value">
+          <select id="value" name="text" [(ngModel)]="contratacionSeleccionada" (change)="determinarHorasContratacion()" class="fore-control">
+            <option *ngFor="let tipoc of tipoContratacion"[value]="tipoc.value" >
             {{tipoc.text}}
           </option>
           </select>
+          <!-- Prueba para ver la opción seleccionado -->
+          <p [hidden]="contratacionSeleccionada == '0'">
+            Horas de Investigaci&oacute;n M&aacute;ximas:  {{ hrsInvestigacionMax }} <br>
+          </p>
         </h4>
         <h4>
           <span>Tipo de Distribucion</span>
-          <select id="value" name="text" [(ngModel)]="tipoDistribucion" class="fore-control">
+          <select id="value" name="text" [(ngModel)]="distribucionSelecionada" (change)="determinarHorasDistribucion()" class="fore-control">
             <option *ngFor="let tipod of tipoDistribucion"[value]="tipod.value">
             {{tipod.text}}
           </option>
           </select>
+          <!-- Prueba para ver la opción seleccionado -->
+          <p [hidden]="distribucionSelecionada == '0'">
+            Horas de Clase:  {{ hrsClasenMax }} <br>
+            Horas de Asesor&iacute;a:  {{ hrsAsesoriaMax}}<br>
+            Horas de Gesti&oacute;n Acad&eacute;mica:  {{ hrsGestionAcademicaMax }}</p>
         </h4>
 
         <button>Programar Actividades</button>
-        <button>Programar hora de comida</button>
+        <button>Visualizar Horario</button>
       </div>
     </div>
   </div>
