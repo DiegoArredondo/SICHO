@@ -122,24 +122,38 @@ def register():
  """
 @app.route('/login',methods=['POST'])
 def login():
-    try:
-        content = request.get_json(force=True)
-        print("\n\n\nReceived request for: login")
-        print(content)
-        userid=content['id']
-        password=content['password']
+    #try:
+    content = request.get_json(force=True)
+    print("\n\n\nReceived request for: login")
+    print(content)
+    userid=content['id']
+    password=content['password']
 
-        usuario = tablaUsers.where("id", userid).first()
+    usuario = tablaUsers.where("id", userid).first()
 
-        if(usuario is None ):
-            return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
+    subjectsStr = usuario.scheduleToProgram.split(",")
+    subjects = []
 
-        if(usuario.password != password):
-            return jsonify({"status":"error", "msg": "El usuario y contraseña introducidos no son correctos"})
+    for i in range(len(subjectsStr)):
+        print("getting subject " + subjectsStr[i])
+        #sub = tablaSubjects.where("classId","subjectsStr"[i]).first()
+        subj = tablaSubjects.where("classId",3).first()
+        if(subj is not None):
+            subjects.append(subj.serialize())
 
-        return jsonify({"status":"logged", "user" : usuario.serialize()})
-    except Exception as e:
-        return jsonify({"error":str(e)})
+    print(subjects)
+
+    if(usuario is None ):
+        return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
+
+    if(usuario.password != password):
+        return jsonify({"status":"error", "msg": "El usuario y contraseña introducidos no son correctos"})
+
+    usuario.scheduleToProgram = subjects
+
+    return jsonify({"status":"logged", "user" : usuario.serialize()})
+    #except Exception as e:
+    #return jsonify({"error":str(e)})
 
 @app.route('/addSubjects',methods=['POST'])
 def addSubjects():
@@ -182,9 +196,7 @@ def addSubjects():
 
 @app.route('/getAllUsers')
 def dataUsers():
-    return jsonify(tablaUsers.get().serialize())
-
-    
+    return jsonify(tablaUsers.get().serialize()) 
 @app.route('/getAllDepartments')
 def dataDepartments():
     return jsonify(tablaDepartments.get().serialize())
