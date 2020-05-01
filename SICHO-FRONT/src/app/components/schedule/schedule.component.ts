@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ProfesorService} from './schedule.service';
 import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
+import {environment} from "src/environments/environment"
 
 @Component({
   selector: 'app-schedule',
@@ -11,6 +12,7 @@ export class ScheduleComponent implements OnInit {
 
   public eventSettings:EventSettingsModel
   public profesor:any = [];
+  /* public profesor:any = environment.user;*/
   horasE=true;
   
 
@@ -19,6 +21,24 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
+    let dataSource = []
+
+    this.profesor.scheduleToProgram.array.forEach(element => {
+      dataSource.push({
+        Subject:element.subjectName,
+        Location:element.classroom,
+        StartTime: new Date(2020, 3, 27, element.start[0], element.start[1]),
+        EndTime: new Date(2020, 3, 27, element.end[0], element.end[1]),
+        isReadOnly: true
+      })
+    });
+
+    this.eventSettings = {
+      dataSource:dataSource   
+    };
+    */
+
     this.ProfesorService.getProfesor().subscribe(responseProfesor => {
       this.profesor = responseProfesor
 
@@ -27,7 +47,6 @@ export class ScheduleComponent implements OnInit {
       //Recorre las materias a programar y las agrega al arreglo
       this.profesor.scheduleToProgram.forEach(stp => {
         dataSource.push({
-          Id: 1,
           Subject: stp.subjectName,
           Location: stp.classroom,
           StartTime: new Date(2020, 3, 27, stp.start[0], stp.start[1]),
@@ -41,6 +60,7 @@ export class ScheduleComponent implements OnInit {
         dataSource:dataSource   
       };
     })
+    
   }
 
 imprimirHorario(){
