@@ -14,7 +14,7 @@
                 "start": [9,0],
                 "end": [10,0],
                 "durationMinutes": 60,
-                "days": ["MO"],
+                "days": [1],
                 "classroom": "AV 1829"
             },{
                 "id":2,
@@ -22,7 +22,7 @@
                 "start": [8,30],
                 "end": [10,0],
                 "durationMinutes": 90,
-                "days": ["TU","TH"],
+                "days": [2,4],
                 "classroom": "AV 1823"
             },{
                 "id":3,
@@ -30,7 +30,7 @@
                 "start": [11,30],
                 "end": [13,0],
                 "durationMinutes": 90,
-                "days": ["TU","TH"],
+                "days": [2,4],
                 "classroom": "AV 1829"
             },{
                 "id":4,
@@ -38,7 +38,7 @@
                 "start": [13,0],
                 "end": [16,0],
                 "durationMinutes": 180,
-                "days": ["MO"],
+                "days": [1],
                 "classroom": "MTIN - AV 1827"
             },{
                 "id":5,
@@ -46,7 +46,7 @@
                 "start": [13,0],
                 "end": [14,30],
                 "durationMinutes": 90,
-                "days": ["WE","FR"],
+                "days": [3,5],
                 "classroom": "MCI - Cub. 18"
             },{
                 "id":6,
@@ -54,7 +54,7 @@
                 "start": [15,0],
                 "end": [16,30],
                 "durationMinutes": 90,
-                "days": ["TU","TH"],
+                "days": [2,4],
                 "classroom": "AV1825"
             }
         ]

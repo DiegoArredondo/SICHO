@@ -24,7 +24,7 @@ export class ScheduleComponent implements OnInit {
     /*
     let dataSource = []
 
-    this.profesor.scheduleToProgram.array.forEach(element => {
+    this.profesor.scheduleToProgram.forEach(element => {
       dataSource.push({
         Subject:element.subjectName,
         Location:element.classroom,
@@ -52,7 +52,7 @@ export class ScheduleComponent implements OnInit {
           StartTime: new Date(2020, 3, 27, stp.start[0], stp.start[1]),
           EndTime: new Date(2020, 3, 27, stp.end[0], stp.end[1]),
           isReadOnly:true,
-          RecurrenceRule: "FREQ=WEEKLY;BYDAY="+stp.days.toString()+";INTERVAL=1;"
+          RecurrenceRule: "FREQ=WEEKLY;BYDAY="+this.daysContvertion(stp.days)+";INTERVAL=1;"
         })
       });
       // Inicializa eventSettings con el arreglo de materias
@@ -63,17 +63,41 @@ export class ScheduleComponent implements OnInit {
     
   }
 
-imprimirHorario(){
-   
-   window.print();
- }
- alertaHoras(){
-   if(this.horasE=true){
-    alert('Esta programando horas extra')
-   }else{
-     alert('Esta programando horas base')
+  daysContvertion(daysNumbers = []){
+    var daysLetters = []
+    daysNumbers.forEach(element => {
+      switch(element){
+        case 1:
+          daysLetters.push("MO");
+          break;
+        case 2:
+          daysLetters.push("TU");
+          break;
+        case 3:
+          daysLetters.push("WE");
+          break;
+        case 4:
+          daysLetters.push("TH");
+          break;
+        case 5:
+          daysLetters.push("WE");
+          break;
+        default:
+          break;
+      }
+    });
+    return daysLetters
+  }
 
-   }
-   
- }
+  imprimirHorario(){
+    window.print();
+  }
+
+  alertaHoras(){
+    if(this.horasE=true){
+      alert('Esta programando horas extra')
+    }else{
+      alert('Esta programando horas base')
+    }
+  }
 }
