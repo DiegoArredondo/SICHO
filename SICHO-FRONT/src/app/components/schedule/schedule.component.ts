@@ -11,8 +11,8 @@ import {environment} from "src/environments/environment"
 export class ScheduleComponent implements OnInit {
 
   public eventSettings:EventSettingsModel
+  /*public profesor:any = [];*/
   public profesor:any = [];
-  /* public profesor:any = environment.user;*/
   horasE=true;
   
 
@@ -21,24 +21,26 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
     let dataSource = []
+    this.profesor = environment.user
 
     this.profesor.scheduleToProgram.forEach(element => {
+      var startInt = this.hoursConvertion(element.start)
+      var endsInt = this.hoursConvertion(element.ends)
       dataSource.push({
         Subject:element.subjectName,
         Location:element.classroom,
-        StartTime: new Date(2020, 3, 27, element.start[0], element.start[1]),
-        EndTime: new Date(2020, 3, 27, element.end[0], element.end[1]),
-        isReadOnly: true
+        StartTime: new Date(2020, 3, 27, startInt[0], startInt[1]),
+        EndTime: new Date(2020, 3, 27, endsInt[0], endsInt[1]),
+        isReadOnly: true,
+        RecurrenceRule: "FREQ=WEEKLY;BYDAY="+this.daysConvertion(element.days)+";INTERVAL=1;"
       })
     });
 
     this.eventSettings = {
       dataSource:dataSource   
     };
-    */
-
+    /*
     this.ProfesorService.getProfesor().subscribe(responseProfesor => {
       this.profesor = responseProfesor
 
@@ -60,26 +62,38 @@ export class ScheduleComponent implements OnInit {
         dataSource:dataSource   
       };
     })
-    
+    */
   }
 
-  daysContvertion(daysNumbers = []){
+  hoursConvertion(hours:String){
+    var hoursArrayString = []
+    var hoursArrayInt = []
+    hoursArrayString = hours.split(",")
+    hoursArrayString.forEach(element => {
+      hoursArrayInt.push(element)
+    });
+    return hoursArrayInt
+  }
+
+  daysConvertion(days:String){
     var daysLetters = []
+
+    var daysNumbers = days.split(",")
     daysNumbers.forEach(element => {
       switch(element){
-        case 1:
+        case "1":
           daysLetters.push("MO");
           break;
-        case 2:
+        case "2":
           daysLetters.push("TU");
           break;
-        case 3:
+        case "3":
           daysLetters.push("WE");
           break;
-        case 4:
+        case "4":
           daysLetters.push("TH");
           break;
-        case 5:
+        case "5":
           daysLetters.push("WE");
           break;
         default:
