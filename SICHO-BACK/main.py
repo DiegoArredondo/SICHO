@@ -105,6 +105,10 @@ def register():
         nuevoUser.telephone = telephone
         nuevoUser.extension = extension
         nuevoUser.password = password
+        nuevoUser.contractType = ""
+        nuevoUser.investigationLvl = ""
+        nuevoUser.adviserHours = 0
+        nuevoUser.classPrepHours = 0
         """ AQUI HAY QUE IR AL SISTEMA Y VER QUE CLASES LE FALTAN DE PROGRAMAR """
         nuevoUser.scheduleToProgram = "1,2,3,4,5"
         nuevoUser.save()
@@ -122,38 +126,101 @@ def register():
  """
 @app.route('/login',methods=['POST'])
 def login():
-    #try:
-    content = request.get_json(force=True)
-    print("\n\n\nReceived request for: login")
-    print(content)
-    userid=content['id']
-    password=content['password']
+    try:
+        content = request.get_json(force=True)
+        print("\n\n\nReceived request for: login")
+        print(content)
+        userid=content['id']
+        password=content['password']
 
-    usuario = tablaUsers.where("id", userid).first()
+        usuario = tablaUsers.where("id", userid).first()
 
-    subjectsStr = usuario.scheduleToProgram.split(",")
-    subjects = []
+        subjectsStr = usuario.scheduleToProgram.split(",")
+        subjects = []
 
-    for i in range(len(subjectsStr)):
-        print("getting subject " + subjectsStr[i])
-        #sub = tablaSubjects.where("classId","subjectsStr"[i]).first()
-        subj = tablaSubjects.where("classId",3).first()
-        if(subj is not None):
-            subjects.append(subj.serialize())
+        for i in range(len(subjectsStr)):
+            print("getting subject " + subjectsStr[i])
+            #sub = tablaSubjects.where("classId","subjectsStr"[i]).first()
+            subj = tablaSubjects.where("classId",3).first()
+            if(subj is not None):
+                subjects.append(subj.serialize())
 
-    print(subjects)
+        print(subjects)
 
-    if(usuario is None ):
-        return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
+        if(usuario is None ):
+            return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
 
-    if(usuario.password != password):
-        return jsonify({"status":"error", "msg": "El usuario y contraseña introducidos no son correctos"})
+        if(usuario.password != password):
+            return jsonify({"status":"error", "msg": "El usuario y contraseña introducidos no son correctos"})
 
-    usuario.scheduleToProgram = subjects
+        usuario.scheduleToProgram = subjects
 
-    return jsonify({"status":"logged", "user" : usuario.serialize()})
-    #except Exception as e:
-    #return jsonify({"error":str(e)})
+        return jsonify({"status":"logged", "user" : usuario.serialize()})
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
+@app.route('/updateUserInfo',methods=['POST'])
+def updateUser():
+    try:
+        content = request.get_json(force=True)
+        print("\n\n\nReceived request for: update user info")
+        print(content)
+        userid=content['id']
+        contractType=content['contractType']
+        investigationLvl=content['investigationLvl']
+        adviserHours=content['adviserHours']
+        classPrepHours=content['classPrepHours']
+
+        usuario = tablaUsers.where("id", userid).first()
+
+        if(usuario is None ):
+            return jsonify({"status":"error", "msg": "El usuario ingresado no existe en nuestra base de datos"})
+
+        updateData ={'contractType': contractType,'investigationLvl': investigationLvl,'adviserHours': adviserHours,'classPrepHours': classPrepHours}
+
+        tablaUsers.where('id',  userid).update(updateData)
+
+        return jsonify({"status":"updated"})
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
+@app.route('/updateSubjects',methods=['POST'])
+def updateSubjects():
+    try:
+        content = request.get_json(True)
+        print("\n\n\nReceived request for: update subject")
+        print(content)
+
+        subjects = content['subjects']
+
+        if(len(subjects) == 0):
+            raise ValueError("Debe de proporcionar por lo menos una materia")
+
+        succesCases = []
+
+        for subject in subjects:
+            newSubject = tablaSubjects.where("classId", subject['classId']).first()
+            newSubject.subjectName = subject['subjectName']
+            newSubject.start = subject['start']
+            newSubject.ends = subject['ends']
+            newSubject.durationMinutes = subject['durationMinutes']
+            newSubject.days = subject['days']
+            newSubject.classroom = subject['classroom']
+            newSubject.semester = subject['semester']
+
+            newSubject.update({
+                "subjectName": newSubject.subjectName,
+                "start": newSubject.start,
+                "ends": newSubject.ends,
+                "durationMinutes": newSubject.durationMinutes,
+                "days": newSubject.days,
+                "classroom": newSubject.classroom,
+                "semester": newSubject.semester
+            })
+
+        return jsonify({"status": "updated"})
+    except Exception as e:
+        return jsonify({"error":str(e)})
 
 @app.route('/addSubjects',methods=['POST'])
 def addSubjects():
@@ -177,6 +244,7 @@ def addSubjects():
             newSubject.subjectName = subject['subjectName']
             newSubject.classId = subject['classId']
             newSubject.start = subject['start']
+            newSubject.ends = subject['ends']
             newSubject.durationMinutes = subject['durationMinutes']
             newSubject.days = subject['days']
             newSubject.classroom = subject['classroom']
@@ -186,7 +254,7 @@ def addSubjects():
             newSubject.save()
 
             user.scheduleToProgram = user.scheduleToProgram.replace("," + str(newSubject.classId), "")
-            tablaUsers.where('id',  userid).update({'scheduleToProgram' : user.scheduleToProgram})
+            ##tablaUsers.where('id',  userid).update({'scheduleToProgram' : user.scheduleToProgram})
 
             succesCases.append("Agregada la materia '" + newSubject.subjectName + "' al usuario '" + user.firstName + "'. Clases faltantes: " )
 
