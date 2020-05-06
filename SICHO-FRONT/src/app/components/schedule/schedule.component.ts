@@ -11,9 +11,8 @@ export class ScheduleComponent implements OnInit {
 
   public profesor:any = [];
   horasE=true;
-<<<<<<< HEAD
   
-=======
+  
 
 >>>>>>> master
 
@@ -38,8 +37,12 @@ export class ScheduleComponent implements OnInit {
     ]
   };
 
-  alertaHoras(){
-    if(this.horasE=true){
+  imprimirHorario(){
+    window.print();
+  }
+
+  alertaHoras(HorasE){
+    if(HorasE>40){
       alert('Esta programando horas extra')
     }else{
       alert('Esta programando horas base')
