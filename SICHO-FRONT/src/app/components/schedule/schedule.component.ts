@@ -13,7 +13,7 @@ export class ScheduleComponent implements OnInit {
   public eventSettings:EventSettingsModel
   /*public profesor:any = [];*/
   public profesor:any = [];
-  
+  horasE=true;
   
 
   constructor(private ProfesorService:ProfesorService) {
@@ -107,8 +107,8 @@ export class ScheduleComponent implements OnInit {
     window.print();
   }
 
-  alertaHoras(HorasE){
-    if(HorasE>40){
+  alertaHoras(){
+    if(this.horasE=true){
       alert('Esta programando horas extra')
     }else{
       alert('Esta programando horas base')
