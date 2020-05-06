@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,21 +34,14 @@ export class HomeComponent implements OnInit {
     {text: "Asistente Académico Administrativo con carga", value: 4},
   ]
 
-  tipoDistribucion: Array<{ text:string, value: number}> = [
-    {text: "Tipo A", value: 1},
-    {text: "Tipo B1", value: 2},
-    {text: "Tipo B2", value: 3},
-    {text: "Tipo C", value: 4},
-    {text: "Tipo D1", value: 5},
-    {text: "Tipo D2", value: 6},
-    {text: "Tipo D3", value: 7},
-    {text: "Tipo D4", value: 8},
-    {text: "Tipo D5", value: 9},
-    {text: "Tipo D6", value: 10}
+  tipoDistribucion: string[] = [
+    'Tipo A1', 'Tipo B2', 'Tipo C',
+    'Tipo D1', 'Tipo D2', 'Tipo D3',
+    'Tipo D4', 'Tipo D5', 'Tipo D6'
   ]
   showDropDown: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
   ngOnInit(): void {
@@ -59,7 +54,6 @@ export class HomeComponent implements OnInit {
 
   capturarDistribucion() {
   // Pasamos el valor seleccionado a la variable seleccion1
-  this.seleccionDistribucion = this.distribucionSelecionada;
 }
 
   determinarHorasContratacion(){
@@ -135,5 +129,3 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
-
-}

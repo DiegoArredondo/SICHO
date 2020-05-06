@@ -85,12 +85,22 @@
             #departamento{
                 margin-bottom: 1vh;
                 font-size: 15.6px;
+                text-transform: uppercase;
             }
 
             #nombreDocente{
                 font-size: 15.6px;
             }
-
+            button {
+                border: 2px solid #186db7;
+                border-radius: 20px;
+                padding: 10px 0;
+                color: #186db7;
+                font-weight: bold;
+                margin: 10px 0;
+                width: 60%;
+                font-size: .9rem;
+            }
             .horario{
 
                 overflow: auto;
