@@ -56,32 +56,28 @@
       <div class="rightside">
         <h4>
           <span>Tipo de Contratación</span>
-          <select id="value" name="text" [(ngModel)]="contratacionSeleccionada" (change)="determinarHorasContratacion()" class="fore-control">
-            <option *ngFor="let tipoc of tipoContratacion"[value]="tipoc.value" >
-            {{tipoc.text}}
-          </option>
-          </select>
-          <!-- Prueba para ver la opción seleccionado -->
-          <p [hidden]="contratacionSeleccionada == '0'">
-            Horas de Investigaci&oacute;n M&aacute;ximas:  {{ hrsInvestigacionMax }} <br>
-          </p>
+          <mat-form-field>
+            <mat-label>Tipo de Contratación</mat-label>
+            <mat-select>
+            <mat-option>Tipo de Contratación</mat-option>
+              <mat-option *ngFor = "let tipoC of tipoContratacion" [value] = "tipoC">{{tipoC}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </h4>
         <h4>
           <span>Tipo de Distribucion</span>
-          <select id="value" name="text" [(ngModel)]="distribucionSelecionada" (change)="determinarHorasDistribucion()" class="fore-control">
-            <option *ngFor="let tipod of tipoDistribucion"[value]="tipod.value">
-            {{tipod.text}}
-          </option>
-          </select>
-          <!-- Prueba para ver la opción seleccionado -->
-          <p [hidden]="distribucionSelecionada == '0'">
-            Horas de Clase:  {{ hrsClasenMax }} <br>
-            Horas de Asesor&iacute;a:  {{ hrsAsesoriaMax}}<br>
-            Horas de Gesti&oacute;n Acad&eacute;mica:  {{ hrsGestionAcademicaMax }}</p>
+          <mat-form-field>
+            <mat-label>Tipo de Dristibucion</mat-label>
+            <mat-select>
+            <mat-option>Tipo de Distribucion</mat-option>
+              <mat-option *ngFor = "let tipoD of tipoDistribucion" [value] = "tipoD">{{tipoD}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </h4>
 
+        <button (click)= submitSchedule()>Ver Horario</button>
         <button>Programar Actividades</button>
-        <button>Visualizar Horario</button>
+        <button>Programar hora de comida</button>
       </div>
     </div>
   </div>
