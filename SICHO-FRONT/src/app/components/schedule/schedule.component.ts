@@ -11,10 +11,6 @@ export class ScheduleComponent implements OnInit {
 
   public profesor:any = [];
   horasE=true;
-  
-  
-
->>>>>>> master
 
   constructor(private ProfesorService:ProfesorService) {
 
@@ -48,5 +44,5 @@ export class ScheduleComponent implements OnInit {
       alert('Esta programando horas base')
     }
   }
-  */
+  
 }
