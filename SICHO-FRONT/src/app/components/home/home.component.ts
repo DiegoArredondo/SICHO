@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -48,7 +46,7 @@ export class HomeComponent implements OnInit {
   ]
   showDropDown: boolean;
 
-  constructor(private router: Router) {
+  constructor() {
 
   }
   ngOnInit(): void {
@@ -61,6 +59,7 @@ export class HomeComponent implements OnInit {
 
   capturarDistribucion() {
   // Pasamos el valor seleccionado a la variable seleccion1
+  this.seleccionDistribucion = this.distribucionSelecionada;
 }
 
   determinarHorasContratacion(){
@@ -136,3 +135,5 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
+
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ProfesorService} from './schedule.service';
 import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
-import {environment} from "src/environments/environment"
 
 @Component({
   selector: 'app-schedule',
@@ -10,108 +9,73 @@ import {environment} from "src/environments/environment"
 })
 export class ScheduleComponent implements OnInit {
 
-  public eventSettings:EventSettingsModel
-  /*public profesor:any = [];*/
   public profesor:any = [];
-  
-  
 
   constructor(private ProfesorService:ProfesorService) {
 
   }
 
   ngOnInit(): void {
-    let dataSource = []
-    this.profesor = environment.user
-
-    this.profesor.scheduleToProgram.forEach(element => {
-      var startInt = this.hoursConvertion(element.start)
-      var endsInt = this.hoursConvertion(element.ends)
-      dataSource.push({
-        Subject:element.subjectName,
-        Location:element.classroom,
-        StartTime: new Date(2020, 3, 27, startInt[0], startInt[1]),
-        EndTime: new Date(2020, 3, 27, endsInt[0], endsInt[1]),
-        isReadOnly: true,
-        RecurrenceRule: "FREQ=WEEKLY;BYDAY="+this.daysConvertion(element.days)+";INTERVAL=1;"
-      })
-    });
-
-    this.eventSettings = {
-      dataSource:dataSource   
-    };
-    /*
-    this.ProfesorService.getProfesor().subscribe(responseProfesor => {
-      this.profesor = responseProfesor
-
-      let dataSource = []
-      
-      //Recorre las materias a programar y las agrega al arreglo
-      this.profesor.scheduleToProgram.forEach(stp => {
-        dataSource.push({
-          Subject: stp.subjectName,
-          Location: stp.classroom,
-          StartTime: new Date(2020, 3, 27, stp.start[0], stp.start[1]),
-          EndTime: new Date(2020, 3, 27, stp.end[0], stp.end[1]),
-          isReadOnly:true,
-          RecurrenceRule: "FREQ=WEEKLY;BYDAY="+this.daysContvertion(stp.days)+";INTERVAL=1;"
-        })
-      });
-      // Inicializa eventSettings con el arreglo de materias
-      this.eventSettings = {
-        dataSource:dataSource   
-      };
-    })
-    */
+    this.ProfesorService.getProfesor().subscribe(responseProfesor => this.profesor = responseProfesor)
   }
 
-  hoursConvertion(hours:String){
-    var hoursArrayString = []
-    var hoursArrayInt = []
-    hoursArrayString = hours.split(",")
-    hoursArrayString.forEach(element => {
-      hoursArrayInt.push(element)
-    });
-    return hoursArrayInt
-  }
-
-  daysConvertion(days:String){
-    var daysLetters = []
-
-    var daysNumbers = days.split(",")
-    daysNumbers.forEach(element => {
-      switch(element){
-        case "1":
-          daysLetters.push("MO");
-          break;
-        case "2":
-          daysLetters.push("TU");
-          break;
-        case "3":
-          daysLetters.push("WE");
-          break;
-        case "4":
-          daysLetters.push("TH");
-          break;
-        case "5":
-          daysLetters.push("WE");
-          break;
-        default:
-          break;
+  public eventSettings: EventSettingsModel = {
+    dataSource: [
+      {
+        Id: 1,
+        Subject: "Ayuda", /*profesor.scheduleToProgram.subjectName*/
+        Location: 'USA',
+        StartTime: new Date(2020, 3, 27, 9, 30),
+        EndTime: new Date(2020, 3, 27, 11, 0),
+        isReadOnly:true,
       }
-    });
-    return daysLetters
-  }
+    ]   
+  };  
 
-  imprimirHorario(){
-    window.print();
-  }
-
-  alertaHoras(HorasE){
-    if(HorasE>40){
-      alert('Esta programando horas extra')
-    }else{
-      alert('Esta programando horas base')
+  /*
+  public setView: View = 'Week'
+  public workHours: WorkHoursModel = { start: '8:00', end: '16:00' };
+  public eventObject:EventSettingsModel = {
+    dataSource: [{
+      EventTitle: "",
+      EventStart: new Date(2020, 3, 27, 9, 0),
+      EventEnd: new Date(2020, 3, 27, 10, 0),
+      isReadOnly: true,
+    },{
+      Subject: "Introducción al internet de las cosas",
+      StartTime: new Date(2020, 3, 28, 8, 30),
+      EndTime: new Date(2020, 3, 28, 10, 0),
+      isReadOnly: true,
+      RecurrenceRule: "FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=1;"
+    },{
+      Subject: "Métodos ágiles de desarrollo",
+      StartTime: new Date(2020, 3, 28, 11, 30),
+      EndTime: new Date(2020, 3, 28, 13, 0),
+      isReadOnly: true,
+      RecurrenceRule: "FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=1;"
+    },{
+      Subject: "Proyecto de campo I",
+      StartTime: new Date(2020, 3, 27, 13, 0),
+      EndTime: new Date(2020, 3, 27, 16, 0),
+      isReadOnly: true,
+    },{
+      Subject: "Tópico I",
+      StartTime: new Date(2020, 3, 29, 13, 0),
+      EndTime: new Date(2020, 3, 29, 14, 30),
+      isReadOnly: true,
+      RecurrenceRule: "FREQ=WEEKLY;BYDAY=WE,FR;INTERVAL=1;"
+    },{
+      Subject: "Arquitectura de Software",
+      StartTime: new Date(2020, 3, 28, 15, 0),
+      EndTime: new Date(2020, 3, 28, 16, 30),
+      isReadOnly: true,
+      RecurrenceRule: "FREQ=WEEKLY;BYDAY=TU,TH;INTERVAL=1;"
+    }],
+    fields: {
+      subject: {name: 'EventTitle', default: 'Tutorias'},
+      startTime: {name: 'EventStart'},
+      endTime: {name: 'EventEnd'}
     }
   }
+  */
 }
