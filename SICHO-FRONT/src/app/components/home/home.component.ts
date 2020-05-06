@@ -136,4 +136,3 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
-}
