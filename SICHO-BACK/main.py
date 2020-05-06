@@ -264,7 +264,9 @@ def addSubjects():
 
 @app.route('/getAllUsers')
 def dataUsers():
-    return jsonify(tablaUsers.get().serialize()) 
+    return jsonify(tablaUsers.get().serialize())
+
+    
 @app.route('/getAllDepartments')
 def dataDepartments():
     return jsonify(tablaDepartments.get().serialize())

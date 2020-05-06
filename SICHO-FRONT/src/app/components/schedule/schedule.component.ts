@@ -9,51 +9,40 @@ import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/e
 })
 export class ScheduleComponent implements OnInit {
 
-  public eventSettings:EventSettingsModel
   public profesor:any = [];
   horasE=true;
-  
 
   constructor(private ProfesorService:ProfesorService) {
 
   }
 
   ngOnInit(): void {
-    this.ProfesorService.getProfesor().subscribe(responseProfesor => {
-      this.profesor = responseProfesor
-
-      let dataSource = []
-      
-      //Recorre las materias a programar y las agrega al arreglo
-      this.profesor.scheduleToProgram.forEach(stp => {
-        dataSource.push({
-          Id: 1,
-          Subject: stp.subjectName,
-          Location: stp.classroom,
-          StartTime: new Date(2020, 3, 27, stp.start[0], stp.start[1]),
-          EndTime: new Date(2020, 3, 27, stp.end[0], stp.end[1]),
-          isReadOnly:true,
-          RecurrenceRule: "FREQ=WEEKLY;BYDAY="+stp.days.toString()+";INTERVAL=1;"
-        })
-      });
-      // Inicializa eventSettings con el arreglo de materias
-      this.eventSettings = {
-        dataSource:dataSource   
-      };
-    })
+    this.ProfesorService.getProfesor().subscribe(responseProfesor => this.profesor = responseProfesor)
   }
 
-imprimirHorario(){
-   
-   window.print();
- }
- alertaHoras(){
-   if(this.horasE=true){
-    alert('Esta programando horas extra')
-   }else{
-     alert('Esta programando horas base')
+  public eventSettings: EventSettingsModel = {
+    dataSource: [
+      {
+        Id: 1,
+        Subject: "Ayuda", /*profesor.scheduleToProgram.subjectName*/
+        Location: 'USA',
+        StartTime: new Date(2020, 3, 27, 9, 30),
+        EndTime: new Date(2020, 3, 27, 11, 0),
+        isReadOnly:true,
+      }
+    ]
+  };
 
-   }
-   
- }
+  imprimirHorario(){
+    window.print();
+  }
+
+  alertaHoras(HorasE){
+    if(HorasE>40){
+      alert('Esta programando horas extra')
+    }else{
+      alert('Esta programando horas base')
+    }
+  }
+  
 }

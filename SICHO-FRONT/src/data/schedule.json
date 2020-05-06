@@ -1,0 +1,14 @@
+{
+    "horario":[
+        {
+            "id":1,
+                "subjectName":"Tutorias",
+                "start": "new Date(2020, 4, 27, 9, 0)",
+                "end": "new Date(2020, 4, 27, 10, 0)",
+                "durationMinutes": 60,
+                "days": ["lunes", "miercoles", "viernes"],
+                "classroom": "AV 1829",
+                "isEditable": false
+        }
+    ]
+}
