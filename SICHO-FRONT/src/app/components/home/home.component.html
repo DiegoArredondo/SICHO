@@ -1,7 +1,11 @@
+<script src="home.component.js"></script>
 <div class="main">
   <div class="mainContainer">
     <div class="lateral">
-      <img src="../../../assets/img/PI_negativo.png" alt="ITSON logo circular " />
+      <img
+        src="../../../assets/img/PI_negativo.png"
+        alt="ITSON logo circular "
+      />
       <h1>
         Es <br />
         ta <br />
@@ -63,42 +67,71 @@
               <mat-option *ngFor = "let tipoC of tipoContratacion" [value] = "tipoC">{{tipoC}}</mat-option>
             </mat-select>
           </mat-form-field> -->
-          <select id = "value" name="text"[(ngModel)]="contratacionSeleccionada" (change)="determinarHorasContratacion()" class="fore-control">
-            <option *ngFor="let tipoc of tipoContratacion"[value]="tipoc.value">
-              {{tipoc.text}}
+          <select
+            id="value"
+            name="text"
+            [(ngModel)]="contratacionSeleccionada"
+            (change)="determinarHorasContratacion()"
+            class="fore-control"
+          >
+            <option
+              *ngFor="let tipoc of tipoContratacion"
+              [value]="tipoc.value"
+            >
+              {{ tipoc.text }}
             </option>
           </select>
-         <!-- Prueba para ver la opcion seleccionada -->
+          <!-- Prueba para ver la opcion seleccionada -->
           <p [hidden]="contratacionSeleccionada == '0'">
-              Horas de Investigaci&oacute;n M&aacute;ximas: {{hrsInvestigacionMax}}<br>
+            Horas de Investigaci&oacute;n M&aacute;ximas:
+            {{ hrsInvestigacionMax }}<br />
           </p>
         </h4>
         <h4>
           <span>Tipo de Distribucion</span>
-           <!--<mat-form-field>
+          <!--<mat-form-field>
             <mat-label>Tipo de Dristibucion</mat-label>
             <mat-select>
             <mat-option>Tipo de Distribucion</mat-option>
               <mat-option *ngFor = "let tipoD of tipoDistribucion" [value] = "tipoD">{{tipoD}}</mat-option>
             </mat-select>
           </mat-form-field> -->
-          <select id = "value" name="text"[(ngModel)]="distribucionSeleccionada" (change)="determinarHorasDistribucion()" class="fore-control">
-            <option *ngFor="let tipod of tipoDistribucion"[value]="tipod.value">
-              {{tipod.text}}
+          <select
+            id="value"
+            name="text"
+            [(ngModel)]="distribucionSeleccionada"
+            (change)="determinarHorasDistribucion()"
+            class="fore-control"
+          >
+            <option
+              *ngFor="let tipod of tipoDistribucion"
+              [value]="tipod.value"
+            >
+              {{ tipod.text }}
             </option>
           </select>
-         <!-- Prueba para ver la opcion seleccionada -->
+          <!-- Prueba para ver la opcion seleccionada -->
           <p [hidden]="distribucionSeleccionada == '0'">
-              Horas de Clase M&aacute;ximas: {{hrsClaseMax}}<br>
-              Horas de Asesor&iacute;a M&aacute;ximas: {{hrsAsesorianMax}}<br>
-              Horas de Gesti&oacute;n Acad&eacute;mica M&aacute;ximas: {{hrsGestionAcademicaMax}}<br>
+            Horas de Clase M&aacute;ximas: {{ hrsClaseMax }}<br />
+            Horas de Asesor&iacute;a M&aacute;ximas: {{ hrsAsesorianMax }}<br />
+            Horas de Gesti&oacute;n Acad&eacute;mica M&aacute;ximas:
+            {{ hrsGestionAcademicaMax }}<br />
           </p>
         </h4>
+        <h4>
+          <span>Asignar Horas de Investigaci&oacute;n por Semana</span>
+            <input type="range" id ="slider" value ="1" min= {{this.hrsInvestigacionMin}} max= {{this.hrsInvestigacionMax}} class="slider" #ranger (input)="determinarHorasContratacion()">
+            <p [hidden]="distribucionSeleccionada == '0'">Horas por Semana: <span id="value"></span></p>
 
-        <button (click)= submitSchedule()>Ver Horario</button>
-        <button>Programar Actividades</button>
-        <button>Programar hora de comida</button>
+        </h4>
       </div>
+      <div class="Buttons">
+        <button (click)="submitSchedule()">Ver Horario</button> <br />
+        <button>Programar Actividades</button> <br />
+        <button>Programar hora de comida</button>
+    </div>
+
     </div>
   </div>
 </div>
+
