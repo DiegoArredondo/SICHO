@@ -13,13 +13,6 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class HomeComponent implements OnInit {
 
-  clasesProgramadas = 10;
-  clasesPorProgramar = 10;
-  horasInvestigacionSemanales = 10;
-  horasExtra = 10;
-
-  horasFaltantes = 10;
-
   contratacionSeleccionada: string = '0';
   distribucionSeleccionada: string = '0';
   seleccionContratacion: string = '';
@@ -55,13 +48,27 @@ export class HomeComponent implements OnInit {
     { text: "Tipo D5", value: 9 },
     { text: "Tipo D6", value: 10 }
   ]
+
+  clasesProgramadas: number = 0;
+  clasesporProgramar: number = 0;
+  InvProgramadas: number = 0;
+  horasInvestigacionSemanales: number = 0;
+  asesoriasProgramadas: number = 0;
+  asesoriasporProgramar: number = 0;
+  gestionAcademicaProgramada: number = 0;
+  gestionAcademicaPorProgramar: number = 0;
+  horasExtra: number = 0;
+  horasFaltantes: number = 0;
+
   showDropDown: boolean;
+
 
   constructor(private router: Router) {
 
   }
   ngOnInit(): void {
   }
+
 
   capturarContratacion() {
     //Pasamos el valor seleccionado a la variable seleccionada
@@ -78,18 +85,22 @@ export class HomeComponent implements OnInit {
       case '1':
         this.hrsInvestigacionMax = 20;
         this.hrsInvestigacionMin = 4;
+        this.horasInvestigacionSemanales = 20;
         break;
       case '2':
         this.hrsInvestigacionMax = 20;
         this.hrsInvestigacionMin = 4;
+        this.horasInvestigacionSemanales = 20;
         break;
       case '3':
         this.hrsInvestigacionMax = 6;
         this.hrsInvestigacionMin = 0;
+        this.horasInvestigacionSemanales = 6
         break;
       case '4':
         this.hrsInvestigacionMax = 6;
         this.hrsInvestigacionMin = 0;
+        this.horasInvestigacionSemanales = 6
         break;
     }
   }
@@ -99,55 +110,127 @@ export class HomeComponent implements OnInit {
     switch (this.distribucionSeleccionada) {
       case '1':
         this.hrsClaseMax = 15;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '2':
         this.hrsClaseMax = 12;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '3':
         this.hrsClaseMax = 12;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '4':
         this.hrsClaseMax = 9;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '5':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '6':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '7':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '8':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '9':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
       case '10':
         this.hrsClaseMax = 6;
+        this.hrsClaseMin = 6;
         this.hrsAsesorianMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsAsesorianMin = Math.round(this.hrsClaseMin / 3);
         this.hrsGestionAcademicaMax = Math.round(this.hrsClaseMax / 3);
+        this.hrsGestionAcademicaMin = Math.round(this.hrsClaseMin / 3);
+        this.clasesporProgramar = this.hrsClaseMax;
+        this.asesoriasporProgramar = this.hrsAsesorianMax;
+        this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
     }
+  }
+
+  clasesPte(){
+    this.clasesporProgramar = this.hrsClaseMax;
+  }
+
+  clasesSeleccionadas(){
+    this.clasesProgramadas;
+  }
+
+  investigacionPte(){
+    this.horasInvestigacionSemanales = this.hrsInvestigacionMax;
   }
 
    submitSchedule() {

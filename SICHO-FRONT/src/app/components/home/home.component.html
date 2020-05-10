@@ -20,7 +20,7 @@
         <div class="group1">
           <div class="row">
             <div class="value">
-              {{ clasesProgramadas }} de {{ clasesPorProgramar }}
+              {{ clasesProgramadas }} de {{ clasesporProgramar }}
             </div>
             <div class="label">
               Clases Programadas
@@ -29,10 +29,41 @@
 
           <div class="row">
             <div class="value">
-              {{ horasInvestigacionSemanales }}
+              {{ InvProgramadas }} de {{horasInvestigacionSemanales}}
             </div>
             <div class="label">
-              Horas de Investigacion Semanales
+              Horas de Investigación Semanales
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="value">
+              {{ asesoriasProgramadas }} de {{asesoriasporProgramar}}
+            </div>
+            <div class="label">
+              Horas de Asesor&iacute;as Semanales
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="value">
+              {{ gestionAcademicaProgramada }} de {{gestionAcademicaPorProgramar}}
+            </div>
+            <div class="label">
+              Horas de G. Académica Semanales
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="group2">
+          <div class="row">
+            <div class="value">
+              {{ horasFaltantes }}
+            </div>
+            <div class="label">
+              Horas faltantes para las 40 horas
             </div>
           </div>
 
@@ -44,17 +75,7 @@
               Horas extra
             </div>
           </div>
-        </div>
 
-        <div class="group2">
-          <div class="row">
-            <div class="value">
-              {{ horasFaltantes }}
-            </div>
-            <div class="label">
-              Horas faltantes para las 40 horas
-            </div>
-          </div>
         </div>
       </div>
       <div class="rightside">
@@ -83,8 +104,8 @@
           </select>
           <!-- Prueba para ver la opcion seleccionada -->
           <p [hidden]="contratacionSeleccionada == '0'">
-            Horas de Investigaci&oacute;n M&aacute;ximas:
-            {{ hrsInvestigacionMax }}<br />
+            Horas de Investigaci&oacute;n M&iacute;nima:
+            {{ hrsInvestigacionMin }}<br />
           </p>
         </h4>
         <h4>
@@ -112,10 +133,10 @@
           </select>
           <!-- Prueba para ver la opcion seleccionada -->
           <p [hidden]="distribucionSeleccionada == '0'">
-            Horas de Clase M&aacute;ximas: {{ hrsClaseMax }}<br />
-            Horas de Asesor&iacute;a M&aacute;ximas: {{ hrsAsesorianMax }}<br />
-            Horas de Gesti&oacute;n Acad&eacute;mica M&aacute;ximas:
-            {{ hrsGestionAcademicaMax }}<br />
+            Horas de Clase M&iacute;n.: {{ hrsClaseMin }}<br />
+            Horas de Asesor&iacute;a M&iacute;n.: {{ hrsAsesorianMin }}<br />
+            Horas de Gesti&oacute;n Acad&eacute;mica M&iacute;n.:
+            {{ hrsGestionAcademicaMin }}<br />
           </p>
         </h4>
         <h4>
