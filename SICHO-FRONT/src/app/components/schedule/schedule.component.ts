@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ProfesorService} from './schedule.service';
 import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 import {environment} from "src/environments/environment"
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -16,7 +17,7 @@ export class ScheduleComponent implements OnInit {
   
   
 
-  constructor(private ProfesorService:ProfesorService) {
+  constructor(private ProfesorService:ProfesorService, private router: Router) {
 
   }
 
@@ -114,4 +115,9 @@ export class ScheduleComponent implements OnInit {
       alert('Esta programando horas base')
     }
   }
+
+  navigate(goTo){
+    this.router.navigate([goTo])
+  }
+
 }

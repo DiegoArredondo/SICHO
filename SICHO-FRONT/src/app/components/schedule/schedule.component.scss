@@ -44,6 +44,7 @@
     }
     
     .content{
+        width: clac(90% -18vh);
         padding-top: 5vh;
         padding-left: 5vh;
         padding-right: 5vh;
@@ -51,7 +52,7 @@
     
         .header{
             display: flex;
-            width: 73vw;
+            width: 100%;
             height: 15vh;
             flex-wrap: wrap;
             justify-content: space-between;

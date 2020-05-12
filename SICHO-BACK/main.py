@@ -140,8 +140,8 @@ def login():
 
         for i in range(len(subjectsStr)):
             print("getting subject " + subjectsStr[i])
-            #sub = tablaSubjects.where("classId","subjectsStr"[i]).first()
-            subj = tablaSubjects.where("classId",3).first()
+            subj = tablaSubjects.where("classId", subjectsStr[i]).first()
+            print(subj)
             if(subj is not None):
                 subjects.append(subj.serialize())
 

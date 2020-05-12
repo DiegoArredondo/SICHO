@@ -18,6 +18,10 @@ class CreateUsersTable(Migration):
             table.string('extension')
             table.string('scheduleToProgram')
             table.string('password')
+            table.integer('adviserHours')
+            table.integer('classPrepHours')
+            table.string('contractType')
+            table.string('investigationLvl')
             table.timestamps()
 
     def down(self):

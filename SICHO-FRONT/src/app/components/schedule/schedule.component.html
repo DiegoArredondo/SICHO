@@ -4,7 +4,7 @@
 
         <div class="lateral">
 
-            <img src="../../../assets/img/PI_negativo.png" alt="ITSON logo circular ">
+            <img src="../../../assets/img/PI_negativo.png" (click)="navigate('home')" class="pointer">
             <h1>Ho <br> ra <br> rio.</h1>
 
         </div>
@@ -37,7 +37,7 @@
             
             <th><button (click)=imprimirHorario()>Imprimir Horario</button>
             
-                <button  (click)=alertaHoras(41)>Verificar Horas</button>
+               <!--  <button  (click)=alertaHoras(41)>Verificar Horas</button> -->
                <!--
                    {{professor.horas}}
                 <h1 *ngIf="horasE ; else elseBlock">

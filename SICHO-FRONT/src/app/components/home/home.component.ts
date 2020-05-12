@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from 'src/app/app.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit {
   gestionAcademicaProgramada: number = 0;
   gestionAcademicaPorProgramar: number = 0;
   horasExtra: number = 0;
-  horasFaltantes: number = 0;
+  horasProgramadas: number = 0;
 
   showDropDown: boolean;
 
@@ -67,6 +68,22 @@ export class HomeComponent implements OnInit {
 
   }
   ngOnInit(): void {
+
+    let user = environment.user
+
+    debugger;
+
+    let horasClase = 0
+    user.scheduleToProgram.forEach(subj => {
+      horasClase += subj.durationMinutes/60
+    });
+
+    this.horasProgramadas = horasClase + user.adviserHours + user.classPrepHours
+
+    if(this.horasProgramadas>40){
+      this.horasExtra = this.horasProgramadas -40
+    }
+    
   }
 
 
