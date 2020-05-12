@@ -2,10 +2,7 @@
 <div class="main">
   <div class="mainContainer">
     <div class="lateral">
-      <img
-        src="../../../assets/img/PI_negativo.png"
-        alt="ITSON logo circular "
-      />
+      <img src="../../../assets/img/PI_negativo.png" alt="ITSON logo circular " />
       <h1>
         Es <br />
         ta <br />
@@ -16,143 +13,128 @@
     <div class="content">
       <h2>Estado de la programación de horario</h2>
 
-      <div class="leftside">
-        <div class="group1">
-          <div class="row">
-            <div class="value">
-              {{ clasesProgramadas }} de {{ clasesporProgramar }}
+      <div class="flex-row">
+        <div class="leftside">
+          <div class="group1">
+            <div class="row">
+              <div class="value">
+                {{ clasesProgramadas }} de {{ clasesporProgramar }}
+              </div>
+              <div class="label">
+                Clases Programadas
+              </div>
             </div>
-            <div class="label">
-              Clases Programadas
+
+            <div class="row">
+              <div class="value">
+                {{ InvProgramadas }} de {{horasInvestigacionSemanales}}
+              </div>
+              <div class="label">
+                Horas de Investigación Semanales
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="value">
+                {{ asesoriasProgramadas }} de {{asesoriasporProgramar}}
+              </div>
+              <div class="label">
+                Horas de Asesor&iacute;as Semanales
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="value">
+                {{ gestionAcademicaProgramada }} de {{gestionAcademicaPorProgramar}}
+              </div>
+              <div class="label">
+                Horas de G. Académica Semanales
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="value">
-              {{ InvProgramadas }} de {{horasInvestigacionSemanales}}
-            </div>
-            <div class="label">
-              Horas de Investigación Semanales
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="value">
-              {{ asesoriasProgramadas }} de {{asesoriasporProgramar}}
-            </div>
-            <div class="label">
-              Horas de Asesor&iacute;as Semanales
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="value">
-              {{ gestionAcademicaProgramada }} de {{gestionAcademicaPorProgramar}}
+          <div class="group2">
+            <div class="row">
+              <div class="value">
+                {{ horasProgramadas }} de 40
+              </div>
+              <div class="label">
+                horas programadas
+              </div>
             </div>
-            <div class="label">
-              Horas de G. Académica Semanales
+
+            <div class="row">
+              <div class="value">
+                {{ horasExtra }}
+              </div>
+              <div class="label">
+                Horas extra
+              </div>
             </div>
+
           </div>
         </div>
-
-
-
-        <div class="group2">
-          <div class="row">
-            <div class="value">
-              {{ horasProgramadas }} de 40
-            </div>
-            <div class="label">
-              horas programadas
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="value">
-              {{ horasExtra }}
-            </div>
-            <div class="label">
-              Horas extra
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="rightside">
-        <h4>
-          <span>Tipo de Contratación</span>
-          <!-- <mat-form-field>
+        <div class="rightside">
+          <h4>
+            <span>Tipo de Contratación</span>
+            <!-- <mat-form-field>
             <mat-label>Tipo de Contratación</mat-label>
             <mat-select>
             <mat-option>Tipo de Contratación</mat-option>
               <mat-option *ngFor = "let tipoC of tipoContratacion" [value] = "tipoC">{{tipoC}}</mat-option>
             </mat-select>
           </mat-form-field> -->
-          <select
-            id="value"
-            name="text"
-            [(ngModel)]="contratacionSeleccionada"
-            (change)="determinarHorasContratacion()"
-            class="fore-control"
-          >
-            <option
-              *ngFor="let tipoc of tipoContratacion"
-              [value]="tipoc.value"
-            >
-              {{ tipoc.text }}
-            </option>
-          </select>
-          <!-- Prueba para ver la opcion seleccionada -->
-          <p [hidden]="contratacionSeleccionada == '0'">
-            Horas de Investigaci&oacute;n M&iacute;nima:
-            {{ hrsInvestigacionMin }}<br />
-          </p>
-        </h4>
-        <h4>
-          <span>Tipo de Distribucion</span>
-          <!--<mat-form-field>
+            <select id="value" name="text" [(ngModel)]="contratacionSeleccionada"
+              (change)="determinarHorasContratacion()" class="fore-control">
+              <option *ngFor="let tipoc of tipoContratacion" [value]="tipoc.value">
+                {{ tipoc.text }}
+              </option>
+            </select>
+            <!-- Prueba para ver la opcion seleccionada -->
+            <p [hidden]="contratacionSeleccionada == '0'">
+              Horas de Investigaci&oacute;n M&iacute;nima:
+              {{ hrsInvestigacionMin }}<br />
+            </p>
+          </h4>
+          <h4>
+            <span>Tipo de Distribucion</span>
+            <!--<mat-form-field>
             <mat-label>Tipo de Dristibucion</mat-label>
             <mat-select>
             <mat-option>Tipo de Distribucion</mat-option>
               <mat-option *ngFor = "let tipoD of tipoDistribucion" [value] = "tipoD">{{tipoD}}</mat-option>
             </mat-select>
           </mat-form-field> -->
-          <select
-            id="value"
-            name="text"
-            [(ngModel)]="distribucionSeleccionada"
-            (change)="determinarHorasDistribucion()"
-            class="fore-control"
-          >
-            <option
-              *ngFor="let tipod of tipoDistribucion"
-              [value]="tipod.value"
-            >
-              {{ tipod.text }}
-            </option>
-          </select>
-          <!-- Prueba para ver la opcion seleccionada -->
-          <p [hidden]="distribucionSeleccionada == '0'">
-            Horas de Clase M&iacute;n.: {{ hrsClaseMin }}<br />
-            Horas de Asesor&iacute;a M&iacute;n.: {{ hrsAsesorianMin }}<br />
-            Horas de Gesti&oacute;n Acad&eacute;mica M&iacute;n.:
-            {{ hrsGestionAcademicaMin }}<br />
-          </p>
-        </h4>
-        <h4>
-          <span>Asignar Horas de Investigaci&oacute;n por Semana</span>
-            <input type="range" id ="slider" value ="1" min= {{this.hrsInvestigacionMin}} max= {{this.hrsInvestigacionMax}} class="slider" #ranger (input)="determinarHorasContratacion()">
+            <select id="value" name="text" [(ngModel)]="distribucionSeleccionada"
+              (change)="determinarHorasDistribucion()" class="fore-control">
+              <option *ngFor="let tipod of tipoDistribucion" [value]="tipod.value">
+                {{ tipod.text }}
+              </option>
+            </select>
+            <!-- Prueba para ver la opcion seleccionada -->
+            <p [hidden]="distribucionSeleccionada == '0'">
+              Horas de Clase M&iacute;n.: {{ hrsClaseMin }}<br />
+              Horas de Asesor&iacute;a M&iacute;n.: {{ hrsAsesorianMin }}<br />
+              Horas de Gesti&oacute;n Acad&eacute;mica M&iacute;n.:
+              {{ hrsGestionAcademicaMin }}<br />
+            </p>
+          </h4>
+          <h4>
+            <span>Asignar Horas de Investigaci&oacute;n por Semana</span>
+            <input type="range" id="slider" value="1" min={{this.hrsInvestigacionMin}} max={{this.hrsInvestigacionMax}}
+              class="slider" #ranger (input)="determinarHorasContratacion()">
             <p [hidden]="distribucionSeleccionada == '0'">Horas por Semana: <span id="value"></span></p>
 
-        </h4>
+          </h4>
+        </div>
+        <div class="Buttons">
+          <button (click)="submitSchedule()">Ver Horario</button> <br />
+          <button>Programar Actividades</button> <br />
+          <button>Programar hora de comida</button>
+        </div>
       </div>
-      <div class="Buttons">
-        <button (click)="submitSchedule()">Ver Horario</button> <br />
-        <button>Programar Actividades</button> <br />
-        <button>Programar hora de comida</button>
-    </div>
-
     </div>
   </div>
 </div>
-

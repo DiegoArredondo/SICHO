@@ -60,12 +60,23 @@
       font-weight: bold;
     }
 
+    div.flex-row{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      height: 70%;
+      align-items: center;
+      justify-content: center;
+
+    }
+
     div.leftside {
       width: 44%;
-      height: 70%;
+      height: 100%;
       display: inline-flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
 
       div.row {
         display: flex;
@@ -104,7 +115,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 70%;
+      height: 100%;
 
       h4 {
         text-align: center;
@@ -181,7 +192,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 70%;
+      height: 100%;
 
       button {
         border: 2px solid #186db7;
