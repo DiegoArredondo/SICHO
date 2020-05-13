@@ -263,40 +263,6 @@ export class HomeComponent implements OnInit {
     this.horasInvestigacionSemanales = this.hrsInvestigacionMax;
   }
 
-
-  submitStatus() {
-
-    if (this.clasesporProgramar == null) {
-      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
-      return;
-    }
-    if (this.horasInvestigacionSemanales == null) {
-      this.errorMsg = "Seleccione una opcion en Tipo de Contratacion"
-      return;
-    }
-    if (this.asesoriasporProgramar  == null) {
-      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
-      return;
-    }
-    if (this.gestionAcademicaPorProgramar  == null) {
-      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
-      return;
-    }
-
-    this.apiService.post(ApiService.updateUserInfo, {"id": this.id, "contractType": this.clasesporProgramar,
-          "investigationLvl":this.horasInvestigacionSemanales, "adviserHours": this.asesoriasporProgramar,
-          "classPrepHours":this.gestionAcademicaPorProgramar }).subscribe(data => {
-      if (data.status == "success") {
-        environment.user = data.user
-        this.router.navigate(["updateUserInf"])
-      } else {
-        this.errorMsg = data.msg
-      }
-    }, error => {
-      alert(error)
-    })
-  }
-
   submitSchedule() {
     // Obtener el usuario en la BD de ITSON
     this.router.navigate(["schedule"])
