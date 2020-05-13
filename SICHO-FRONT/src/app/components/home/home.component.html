@@ -39,7 +39,7 @@
                 {{ asesoriasProgramadas }} de {{asesoriasporProgramar}}
               </div>
               <div class="label">
-                Horas de Asesor&iacute;as Semanales
+                Horas de Asesorías Semanales
               </div>
             </div>
 
@@ -94,7 +94,7 @@
             </select>
             <!-- Prueba para ver la opcion seleccionada -->
             <p [hidden]="contratacionSeleccionada == '0'">
-              Horas de Investigaci&oacute;n M&iacute;nima:
+              Horas de Investigación Mínima:
               {{ hrsInvestigacionMin }}<br />
             </p>
           </h4>
@@ -115,17 +115,17 @@
             </select>
             <!-- Prueba para ver la opcion seleccionada -->
             <p [hidden]="distribucionSeleccionada == '0'">
-              Horas de Clase M&iacute;n.: {{ hrsClaseMin }}<br />
-              Horas de Asesor&iacute;a M&iacute;n.: {{ hrsAsesorianMin }}<br />
-              Horas de Gesti&oacute;n Acad&eacute;mica M&iacute;n.:
+              Horas de Clase Mín.: {{ hrsClaseMin }}<br />
+              Horas de Asesoría Mín.: {{ hrsAsesorianMin }}<br />
+              Horas de Gestión Académica Mín.:
               {{ hrsGestionAcademicaMin }}<br />
             </p>
           </h4>
           <h4>
-            <span>Asignar Horas de Investigaci&oacute;n por Semana</span>
+            <span>Asignar Horas de Investigación por Semana</span>
             <input type="range" id="slider" value="1" min={{this.hrsInvestigacionMin}} max={{this.hrsInvestigacionMax}}
-              class="slider" #ranger (input)="determinarHorasContratacion()">
-            <p [hidden]="distribucionSeleccionada == '0'">Horas por Semana: <span id="value"></span></p>
+              class="slider" #ranger (input)="setHorasInvestigacion($event)">
+            <p [hidden]="distribucionSeleccionada == '0'">Horas por Semana: <span id="value">{{ horasPorSemana }}</span></p>
 
           </h4>
         </div>

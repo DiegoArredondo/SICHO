@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
   hrsGestionAcademicaMin: number;
   selectedRam: number;
 
+  // Aqui va el resultado del slider
+  horasPorSemana: number = 0;
 
 
   tipoContratacion: Array<{ text: string, value: number }> = [
@@ -75,15 +77,15 @@ export class HomeComponent implements OnInit {
 
     let horasClase = 0
     user.scheduleToProgram.forEach(subj => {
-      horasClase += subj.durationMinutes/60
+      horasClase += subj.durationMinutes / 60
     });
 
     this.horasProgramadas = horasClase + user.adviserHours + user.classPrepHours
 
-    if(this.horasProgramadas>40){
-      this.horasExtra = this.horasProgramadas -40
+    if (this.horasProgramadas > 40) {
+      this.horasExtra = this.horasProgramadas - 40
     }
-    
+
   }
 
 
@@ -94,6 +96,10 @@ export class HomeComponent implements OnInit {
 
   capturarDistribucion() {
     this.seleccionDistribucion = this.distribucionSeleccionada;
+  }
+
+  setHorasInvestigacion(event) {
+    this.horasPorSemana = event.target.value;
   }
 
   determinarHorasContratacion() {
@@ -120,6 +126,8 @@ export class HomeComponent implements OnInit {
         this.horasInvestigacionSemanales = 6
         break;
     }
+
+    this.horasPorSemana = this.hrsInvestigacionMin
   }
 
   determinarHorasDistribucion() {
@@ -238,19 +246,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  clasesPte(){
+  clasesPte() {
     this.clasesporProgramar = this.hrsClaseMax;
   }
 
-  clasesSeleccionadas(){
+  clasesSeleccionadas() {
     this.clasesProgramadas;
   }
 
-  investigacionPte(){
+  investigacionPte() {
     this.horasInvestigacionSemanales = this.hrsInvestigacionMax;
   }
 
-   submitSchedule() {
+  submitSchedule() {
     // Obtener el usuario en la BD de ITSON
     this.router.navigate(["schedule"])
   }
