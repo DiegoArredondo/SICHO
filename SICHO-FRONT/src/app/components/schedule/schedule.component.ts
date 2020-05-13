@@ -27,6 +27,15 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    let user = environment.user
+
+    if(!user){
+      this.router.navigate(["login"])
+      return
+    }
+
+
     let dataSource = []
     this.profesor = environment.user
 

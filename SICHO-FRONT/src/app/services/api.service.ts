@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class ApiService {
 
   static registarUsuario = "register"
+  static actualizarUsuario = "updateUserInfo"
   static registarDepartamento = "registerDepartment"
   static login = "login"
   static catalogoUsuarios = "getAllUsers"

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSliderModule } from '@angular/material/slider';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent } from 'src/app/app.component';
 import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +27,8 @@ export class HomeComponent implements OnInit {
   // Aqui va el resultado del slider
   horasPorSemana: number = 0;
 
+  guardarEnabled = false
+
 
   tipoContratacion: Array<{ text: string, value: number }> = [
     { text: "Profesor Investigador Titular", value: 1 },
@@ -52,6 +50,7 @@ export class HomeComponent implements OnInit {
     { text: "Tipo D6", value: 10 }
   ]
 
+
   clasesProgramadas: number = 0;
   clasesporProgramar: number = 0;
   InvProgramadas: number = 0;
@@ -66,12 +65,17 @@ export class HomeComponent implements OnInit {
   showDropDown: boolean;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private apiService : ApiService) {
 
   }
   ngOnInit(): void {
 
     let user = environment.user
+
+    if(!user){
+      this.router.navigate(["login"])
+      return
+    }
 
     debugger;
 
@@ -86,8 +90,15 @@ export class HomeComponent implements OnInit {
       this.horasExtra = this.horasProgramadas - 40
     }
 
+    this.horasPorSemana = environment.user.classPrepHours
+    
+    this.contratacionSeleccionada = environment.user.contractType
+    this.distribucionSeleccionada = environment.user.investigationLvl
+    
+    this.determinarHorasDistribucion()
+    this.determinarHorasContratacion()
+    
   }
-
 
   capturarContratacion() {
     //Pasamos el valor seleccionado a la variable seleccionada
@@ -100,6 +111,8 @@ export class HomeComponent implements OnInit {
 
   setHorasInvestigacion(event) {
     this.horasPorSemana = event.target.value;
+
+    if(this.contratacionSeleccionada && this.horasPorSemana && this.distribucionSeleccionada) this.guardarEnabled = true;
   }
 
   determinarHorasContratacion() {
@@ -128,6 +141,13 @@ export class HomeComponent implements OnInit {
     }
 
     this.horasPorSemana = this.hrsInvestigacionMin
+    if(this.horasInvestigacionSemanales && this.horasPorSemana && this.clasesporProgramar) this.guardarEnabled = true;
+    /* setTimeout(() => {
+      this.contratacionSeleccionada = this.tipoContratacion[Number.parseInt(this.contratacionSeleccionada) -1].text
+      setTimeout(() => {
+        this.contratacionSeleccionada = this.tipoContratacion[Number.parseInt(this.contratacionSeleccionada) -1].text
+      }, 100);
+    }, 100); */
   }
 
   determinarHorasDistribucion() {
@@ -244,6 +264,10 @@ export class HomeComponent implements OnInit {
         this.gestionAcademicaPorProgramar = this.hrsGestionAcademicaMax;
         break;
     }
+    if(this.contratacionSeleccionada && this.horasPorSemana && this.distribucionSeleccionada) this.guardarEnabled = true;
+    /* setTimeout(() => {
+      this.distribucionSeleccionada = this.tipoDistribucion[Number.parseInt(this.distribucionSeleccionada)-1].text
+    }, 100); */
   }
 
   clasesPte() {
@@ -261,5 +285,20 @@ export class HomeComponent implements OnInit {
   submitSchedule() {
     // Obtener el usuario en la BD de ITSON
     this.router.navigate(["schedule"])
+  }
+
+  guardarDatos(){
+    if(this.guardarEnabled)
+    this.apiService.post(ApiService.actualizarUsuario, {"id": environment.user.id, "contractType": this.contratacionSeleccionada, "investigationlvl": this.distribucionSeleccionada, "adviserHours": this.asesoriasporProgramar, "classPrepHours": this.horasPorSemana}).subscribe(data =>{
+      if(data){
+        if(data.status == "updated"){
+          alert("Información guardada con éxito")
+          environment.user.contractType = this.contratacionSeleccionada
+          environment.user.investigationLvl = this.distribucionSeleccionada
+          environment.user.classPrepHours = this.horasPorSemana
+          environment.user.adviserHours = this.asesoriasporProgramar
+        }
+      }
+    })    
   }
 }

@@ -27,7 +27,7 @@
 
             <div class="row">
               <div class="value">
-                {{ InvProgramadas }} de {{horasInvestigacionSemanales}}
+                {{ horasPorSemana }} de {{horasInvestigacionSemanales}}
               </div>
               <div class="label">
                 Horas de Investigación Semanales
@@ -79,13 +79,6 @@
         <div class="rightside">
           <h4>
             <span>Tipo de Contratación</span>
-            <!-- <mat-form-field>
-            <mat-label>Tipo de Contratación</mat-label>
-            <mat-select>
-            <mat-option>Tipo de Contratación</mat-option>
-              <mat-option *ngFor = "let tipoC of tipoContratacion" [value] = "tipoC">{{tipoC}}</mat-option>
-            </mat-select>
-          </mat-form-field> -->
             <select id="value" name="text" [(ngModel)]="contratacionSeleccionada"
               (change)="determinarHorasContratacion()" class="fore-control">
               <option *ngFor="let tipoc of tipoContratacion" [value]="tipoc.value">
@@ -100,13 +93,6 @@
           </h4>
           <h4>
             <span>Tipo de Distribucion</span>
-            <!--<mat-form-field>
-            <mat-label>Tipo de Dristibucion</mat-label>
-            <mat-select>
-            <mat-option>Tipo de Distribucion</mat-option>
-              <mat-option *ngFor = "let tipoD of tipoDistribucion" [value] = "tipoD">{{tipoD}}</mat-option>
-            </mat-select>
-          </mat-form-field> -->
             <select id="value" name="text" [(ngModel)]="distribucionSeleccionada"
               (change)="determinarHorasDistribucion()" class="fore-control">
               <option *ngFor="let tipod of tipoDistribucion" [value]="tipod.value">
@@ -126,13 +112,12 @@
             <input type="range" id="slider" value="1" min={{this.hrsInvestigacionMin}} max={{this.hrsInvestigacionMax}}
               class="slider" #ranger (input)="setHorasInvestigacion($event)">
             <p [hidden]="distribucionSeleccionada == '0'">Horas por Semana: <span id="value">{{ horasPorSemana }}</span></p>
-
           </h4>
+
+          <button (click)="guardarDatos()" *ngIf="guardarEnabled"> Guardar cambios </button>
         </div>
         <div class="Buttons">
-          <button (click)="submitSchedule()">Ver Horario</button> <br />
-          <button>Programar Actividades</button> <br />
-          <button>Programar hora de comida</button>
+          <button (click)="submitSchedule()">Ver Horario</button>
         </div>
       </div>
     </div>
