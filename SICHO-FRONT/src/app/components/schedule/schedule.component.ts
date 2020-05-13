@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import {ProfesorService} from './schedule.service';
 import {Schedule, View, EventSettingsModel, WorkWeekService} from '@syncfusion/ej2-angular-schedule';
 import {environment} from "src/environments/environment"
@@ -15,7 +15,12 @@ export class ScheduleComponent implements OnInit {
   /*public profesor:any = [];*/
   public profesor:any = [];
   
-  
+  printing = false;
+
+  @HostListener('window:afterprint')
+  onafterprint() {
+    this.printing = false
+  }
 
   constructor(private ProfesorService:ProfesorService, private router: Router) {
 
@@ -105,7 +110,10 @@ export class ScheduleComponent implements OnInit {
   }
 
   imprimirHorario(){
-    window.print();
+    this.printing = true
+    setTimeout(() => {
+      window.print();
+    }, 100);
   }
 
   alertaHoras(HorasE){
@@ -118,6 +126,10 @@ export class ScheduleComponent implements OnInit {
 
   navigate(goTo){
     this.router.navigate([goTo])
+  }
+
+  afterPrint(){
+    this.printing = false;
   }
 
 }

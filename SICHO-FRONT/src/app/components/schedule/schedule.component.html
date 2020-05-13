@@ -1,6 +1,6 @@
 <div class="main">
 
-    <div class="mainContainer">
+    <div class="mainContainer" [ngClass]="{'printable': printing}">
 
         <div class="lateral">
 
@@ -35,26 +35,8 @@
 
             </div>
             
-            <th><button (click)=imprimirHorario()>Imprimir Horario</button>
+            <th><button class="printSchedule" (click)=imprimirHorario()>Imprimir Horario</button>
             
-               <!--  <button  (click)=alertaHoras(41)>Verificar Horas</button> -->
-               <!--
-                   {{professor.horas}}
-                <h1 *ngIf="horasE ; else elseBlock">
-                    <p>
-                        Horas Extra: 5**{{profesor.Horas}}
-    
-                    </p>
-                </h1>
-    
-                <ng-template #elseBlock>
-                    <h1>
-                        <p>Horas Programadas: 40**{{profesor.Horas}}
-                        </p>
-                       
-                    </h1>
-                </ng-template> 
-                -->
             </th>
             <div>
 

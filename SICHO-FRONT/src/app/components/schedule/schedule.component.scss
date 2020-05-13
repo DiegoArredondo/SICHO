@@ -10,6 +10,22 @@
     align-items: center;
 }
 
+.mainContainer.printable{
+    width: 100vw;
+    height: 150vh;
+
+    div.horario{
+        height: auto !important;
+    }
+
+    div.lateral{
+        height: 100vh;
+    }
+    button.printSchedule{
+        display: none;
+    }
+}
+
 .mainContainer{
     background-color: #BFDDF8;
     width: 90vw;
@@ -44,7 +60,7 @@
     }
     
     .content{
-        width: clac(90% -18vh);
+        width: calc(90% - 18vh);
         padding-top: 5vh;
         padding-left: 5vh;
         padding-right: 5vh;
@@ -106,7 +122,7 @@
 
                 overflow: auto;
                 height: 59vh;
-                width: 73vw;
+                width: 100%;
                 margin-top: 3vh;
     
             }
