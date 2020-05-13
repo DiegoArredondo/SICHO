@@ -6,6 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from 'src/app/app.component';
 import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   selectedRam: number;
 
   // Aqui va el resultado del slider
-  horasPorSemana: number = 0;
+  horasInvestigacionEstablecidas: number = 0;
 
 
   tipoContratacion: Array<{ text: string, value: number }> = [
@@ -65,25 +66,29 @@ export class HomeComponent implements OnInit {
 
   showDropDown: boolean;
 
+  errorMsg;
+  id;
+  password: any;
 
-  constructor(private router: Router) {
+
+  constructor(private router: Router, private apiService: ApiService) {
 
   }
   ngOnInit(): void {
 
-    let user = environment.user
+  let user = environment.user
 
     debugger;
 
     let horasClase = 0
-    user.scheduleToProgram.forEach(subj => {
-      horasClase += subj.durationMinutes / 60
+    user.scheduleToProgram.forEach((subj: { durationMinutes: number; }) => {
+      horasClase += subj.durationMinutes/60
     });
 
     this.horasProgramadas = horasClase + user.adviserHours + user.classPrepHours
 
-    if (this.horasProgramadas > 40) {
-      this.horasExtra = this.horasProgramadas - 40
+    if(this.horasProgramadas>40){
+      this.horasExtra = this.horasProgramadas -40
     }
 
   }
@@ -99,7 +104,7 @@ export class HomeComponent implements OnInit {
   }
 
   setHorasInvestigacion(event) {
-    this.horasPorSemana = event.target.value;
+    this.horasInvestigacionEstablecidas = event.target.value;
   }
 
   determinarHorasContratacion() {
@@ -127,7 +132,7 @@ export class HomeComponent implements OnInit {
         break;
     }
 
-    this.horasPorSemana = this.hrsInvestigacionMin
+    this.horasInvestigacionEstablecidas = this.hrsInvestigacionMin
   }
 
   determinarHorasDistribucion() {
@@ -258,8 +263,43 @@ export class HomeComponent implements OnInit {
     this.horasInvestigacionSemanales = this.hrsInvestigacionMax;
   }
 
+
+  submitStatus() {
+
+    if (this.clasesporProgramar == null) {
+      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
+      return;
+    }
+    if (this.horasInvestigacionSemanales == null) {
+      this.errorMsg = "Seleccione una opcion en Tipo de Contratacion"
+      return;
+    }
+    if (this.asesoriasporProgramar  == null) {
+      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
+      return;
+    }
+    if (this.gestionAcademicaPorProgramar  == null) {
+      this.errorMsg = "Seleccione una opcion en Tipo de Distribucion"
+      return;
+    }
+
+    this.apiService.post(ApiService.updateUserInfo, {"id": this.id, "contractType": this.clasesporProgramar,
+          "investigationLvl":this.horasInvestigacionSemanales, "adviserHours": this.asesoriasporProgramar,
+          "classPrepHours":this.gestionAcademicaPorProgramar }).subscribe(data => {
+      if (data.status == "success") {
+        environment.user = data.user
+        this.router.navigate(["updateUserInf"])
+      } else {
+        this.errorMsg = data.msg
+      }
+    }, error => {
+      alert(error)
+    })
+  }
+
   submitSchedule() {
     // Obtener el usuario en la BD de ITSON
     this.router.navigate(["schedule"])
   }
 }
+

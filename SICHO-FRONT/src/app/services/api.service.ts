@@ -15,6 +15,7 @@ export class ApiService {
   static catalogoDepartamentos = "getAllDepartments"
   static catalogoMaterias = "getAllSubjects"
   static catalogoMateriasPorIdUsuario = "getAllSubjectsByUserId"
+  static updateUserInfo = "getDistribution"
 
   private baseUrl: string = "https://sicho-272801.wl.r.appspot.com/";
 
