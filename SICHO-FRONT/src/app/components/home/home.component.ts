@@ -295,7 +295,7 @@ export class HomeComponent implements OnInit {
 
   guardarDatos(){
     if(this.guardarEnabled)
-    this.apiService.post(ApiService.actualizarUsuario, {"id": environment.user.id, "contractType": this.contratacionSeleccionada, "investigationlvl": this.distribucionSeleccionada, "adviserHours": this.asesoriasporProgramar, "classPrepHours": this.horasPorSemana}).subscribe(data =>{
+    this.apiService.post(ApiService.actualizarUsuario, {"id": environment.user.id, "contractType": this.contratacionSeleccionada, "investigationLvl": this.distribucionSeleccionada, "adviserHours": this.asesoriasporProgramar, "classPrepHours": this.horasPorSemana}).subscribe(data =>{
       if(data){
         if(data.status == "updated"){
           alert("Información guardada con éxito")
