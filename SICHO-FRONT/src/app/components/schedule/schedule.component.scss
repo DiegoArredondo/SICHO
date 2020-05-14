@@ -14,7 +14,15 @@
     height: 600vh;
 
     div.horario{
-        height: auto !important;
+        height: auto;
+        overflow: visible !important;
+
+        ::ng-deep .e-schedule .e-content-wrap,
+        .e-schedule .e-scroll-container {
+            -webkit-overflow-scrolling: touch;
+            overflow: visible;
+        }
+        
     }
 
     div.lateral{
@@ -24,6 +32,7 @@
         display: none;
     }
 }
+
 
 .mainContainer{
     background-color: #BFDDF8;

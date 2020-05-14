@@ -17,6 +17,7 @@ export class ApiService {
   static catalogoMaterias = "getAllSubjects"
   static catalogoMateriasPorIdUsuario = "getAllSubjectsByUserId"
 
+
   private baseUrl: string = "https://sicho-272801.wl.r.appspot.com/";
 
   constructor(private httpClient: HttpClient) { }

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   selectedRam: number;
 
   // Aqui va el resultado del slider
-  horasPorSemana: number = 0;
+  horasInvestigacionEstablecidas: number = 0;
 
   guardarEnabled = false
 
@@ -64,13 +64,18 @@ export class HomeComponent implements OnInit {
 
   showDropDown: boolean;
 
+  errorMsg;
+  id;
+  password: any;
+
+  horasPorSemana = 0
 
   constructor(private router: Router, private apiService : ApiService) {
 
   }
   ngOnInit(): void {
 
-    let user = environment.user
+  let user = environment.user
 
     if(!user){
       this.router.navigate(["login"])
@@ -80,14 +85,14 @@ export class HomeComponent implements OnInit {
     debugger;
 
     let horasClase = 0
-    user.scheduleToProgram.forEach(subj => {
-      horasClase += subj.durationMinutes / 60
+    user.scheduleToProgram.forEach((subj: { durationMinutes: number; }) => {
+      horasClase += subj.durationMinutes/60
     });
 
     this.horasProgramadas = horasClase + user.adviserHours + user.classPrepHours
 
-    if (this.horasProgramadas > 40) {
-      this.horasExtra = this.horasProgramadas - 40
+    if(this.horasProgramadas>40){
+      this.horasExtra = this.horasProgramadas -40
     }
 
     this.horasPorSemana = environment.user.classPrepHours
@@ -148,6 +153,7 @@ export class HomeComponent implements OnInit {
         this.contratacionSeleccionada = this.tipoContratacion[Number.parseInt(this.contratacionSeleccionada) -1].text
       }, 100);
     }, 100); */
+    this.horasInvestigacionEstablecidas = this.hrsInvestigacionMin
   }
 
   determinarHorasDistribucion() {
